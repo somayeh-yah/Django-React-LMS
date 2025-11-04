@@ -55,15 +55,15 @@ export const logout = () => {
   Cookie.remove("access_token");
   Cookie.remove("refresh_token");
   userAuthInformationStore.getState().setUser(null);
-
+  return <p>You have been logged out successfully</p>
   alert("You have been logged out successfully");
 };
 
-//get user if token exists else refresh token
+
 export const setUser =  async() => {
   const access_token = Cookie.get("access_token");
   const refresh_token = Cookie.get("refresh_token");
-
+//check if token exists else refresh token
   if(!access_token || !refresh_token){
     alert("Token dose not exists");
     return;
