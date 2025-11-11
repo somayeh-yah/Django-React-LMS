@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../../assets/images/logo.svg";
 
 function BaseHeader() {
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-                <div className="container">
+            <nav className="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="light">
+                <div className="container-fluid">
                     <Link className="navbar-brand" to="/">
-                        Desphixs
+                    <img src={logo} alt="logo"/>
                     </Link>
                     <button
                         className="navbar-toggler"
@@ -24,7 +25,7 @@ function BaseHeader() {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <Link className="nav-link" to="/pages/contact-us/">
-                                    {" "}
+                                  
                                     <i className="fas fa-phone"></i> Contact Us
                                 </Link>
                             </li>
