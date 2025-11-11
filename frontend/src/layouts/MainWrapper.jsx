@@ -18,7 +18,9 @@ const MainWrapper = ({ children }) => {
         handler();
     }, []);
 
-    return <>{ loading ? null: children }</>
+    return <>{ loading ? <div style={{ textAlign: "center", marginTop: "50px" }}>
+        <p>Loading...</p>
+      </div>: children }</>
 };
 
 export default MainWrapper;

@@ -1,5 +1,5 @@
 import {userAuthInformationStore} from "../store/auth"
-import axios from "../utils/axios";
+import axios from "./axios";
 import jwt_decode from "jwt-decode";
 import Cookie from "js-cookie";
 import Swal from "sweetalert2";
@@ -49,35 +49,45 @@ export const register = async (full_name, email, password, password2) => {
   }
 }
 
+
 //logout a user
 //remove access and refresh token from Cookies, remove data from Store state
 export const logout = () => {
   Cookie.remove("access_token");
   Cookie.remove("refresh_token");
   userAuthInformationStore.getState().setUser(null);
-  return <p>You have been logged out successfully</p>
   alert("You have been logged out successfully");
 };
 
 
-export const setUser =  async() => {
-  const access_token = Cookie.get("access_token");
-  const refresh_token = Cookie.get("refresh_token");
-//check if token exists else refresh token
-  if(!access_token || !refresh_token){
-    alert("Token dose not exists");
-    return;
-  }
+export const setUser = async () => {
+  try {
+    const access_token = Cookie.get("access_token");
+    const refresh_token = Cookie.get("refresh_token");
 
-  if(isAccessTokenExpierd(access_token)){
+    // Inga tokens = inte inloggad, sätt användaren till null och avbryt
+    if (!access_token || !refresh_token) {
+      console.log("No tokens found, user not logged in");
+      userAuthInformationStore.getState().setUser(null);
+      return;
+    }
 
-    const response = getRefreshedToken(refresh_token);
-    setAuthUser(response.access, response.refresh);
+    let access = access_token;
+    let refresh = refresh_token;
 
-  }else{
+    // Kolla om access token har gått ut
+    if (isAccessTokenExpierd(access)) {
+      const response = await getRefreshedToken(); // OBS: await!
+      access = response.access;
+      refresh = response.refresh;
+    }
 
-    setAuthUser(access_token, refresh_token)
-
+    // Spara tokens och uppdatera store
+    setAuthUser(access, refresh);
+  } catch (error) {
+    console.error("Error setting user:", error);
+    // Om något går fel, nollställ användaren
+    userAuthInformationStore.getState().setUser(null);
   }
 };
 
