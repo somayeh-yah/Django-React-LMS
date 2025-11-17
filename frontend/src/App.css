@@ -1,22 +1,115 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* ****************************** */
+/*         LIGHT MODE            */
+/* ******************************/
+
+:root {
+  /* -------- Colors -------- */
+  --color-primary: oklch(0.9884 0.0013 286.38);
+  --color-secondary: oklch(0.9551 0 0);
+
+  --accent-1: oklch(42.1% 0.07 186);
+  --accent-2: oklch(0.1957 0 0);
+  --accent-3: oklch(0.9675 0.0183 209.43);
+
+  --color-error: oklch(59.9% 0.2 27);
+  --color-success: oklch(75.1% 0.18 145);
+  --color-warning: oklch(84.4% 0.17 85);
+
+  /* -------- Text Colors -------- */
+  --text-primary: oklch(0.1957 0 0); /* black-ish */
+  --text-secondary: oklch(30% 0 0); /* softer dark */
+  --text-light: oklch(98% 0 0); /* white */
+
+  /* -------- Typography -------- */
+  --font-family-primary:
+    "Mona Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  --font-family-secondary: "Poppins", "Merriweather", "Georgia", serif;
+
+  /* Font sizes (modern scale) */
+  --fs-h1: clamp(2.5rem, 5vw, 3.5rem);
+  --fs-h2: clamp(2rem, 4vw, 2.8rem);
+  --fs-h3: clamp(1.75rem, 3vw, 2.2rem);
+  --fs-h4: clamp(1.5rem, 2.5vw, 1.9rem);
+  --fs-h5: clamp(1.25rem, 2vw, 1.6rem);
+  --fs-h6: clamp(1.125rem, 1.5vw, 1.3rem);
+
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-tiny: 0.75rem;
+
+  /* Line height */
+  --lh-tight: 1.1;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+
+  /* Spacing scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* Shadows */
+  --shadow-small:  0px 3px 10px 0px rgba(31, 31, 31, 0.04);
+  --shadow-medium: 0px 3px 10px 0px rgba(31, 31, 31, 0.4);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+/*********************************/
+/*           DARK MODE           */
+/* *******************************/
+
+[data-theme="dark"] {
+  /*  Colors  */
+  --color-primary: oklch(20% 0 0); /* mörk bakgrund */
+  --color-secondary: oklch(28% 0 0); /* mörk surface */
+
+  --accent-1: oklch(50% 0.07 186); /* lite ljusare blå för kontrast */
+  --accent-2: oklch(94% 0 0); /* vit-ish text */
+  --accent-3: oklch(85% 0.02 210); /* ljus cyan */
+
+  --color-error: oklch(65% 0.2 27); /* något ljusare röd för dark */
+  --color-success: oklch(80% 0.18 145);
+  --color-warning: oklch(88% 0.17 85);
+
+  /*  Text Colors  */
+  --text-primary: oklch(95% 0 0); /* vit */
+  --text-secondary: oklch(70% 0 0); /* ljusgrå */
+
+  /*  Shadow  */
+  --shadow-color: oklch(0 0 0 / 0.5);
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+html {
+  box-sizing: border-box;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: var(--color-primary);
+  color: var(--text-primary);
+  font-family: var(--font-family-primary);
+}
+
+.sweetAlert{
+  font-size:1rem;
+  font-family: var(--font-family-secondary);
+  color: var(--color-error);
+}
+
 
 @keyframes logo-spin {
   from {
@@ -40,3 +133,14 @@
 .read-the-docs {
   color: #888;
 }
+.is-invalid {
+  color: red;
+}
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */

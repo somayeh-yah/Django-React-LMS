@@ -1,88 +1,102 @@
-import React from 'react'
-import BaseHeader from '../partials/BaseHeader'
-import BaseFooter from '../partials/BaseFooter'
-import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { useRef } from "react";
+import BaseHeader from "../base-components/BaseHeader";
+import BaseFooter from "../base-components/BaseFooter";
+import AuthCTA from "../../components/auth/AuthCTA";
+import Input from "../../components/Input";
 
+export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm({
+    defaultValues: {
+      email: "",
+      password: "",
+      remember: false,
+    },
+  });
 
-function Login() {
+  const onSubmit = (formData) => {
+    console.log(formData);
+  };
+  const ref = useRef();
+
   return (
     <>
       <BaseHeader />
-
-      <section className="container d-flex flex-column vh-100" style={{ marginTop: "150px" }}>
+      <section
+        className="container d-flex flex-column vh-100"
+        style={{ marginTop: "150px" }}
+      >
         <div className="row align-items-center justify-content-center g-0 h-lg-100 py-8">
           <div className="col-lg-5 col-md-8 py-8 py-xl-0">
             <div className="card shadow">
               <div className="card-body p-6">
-                <div className="mb-4">
-                  <h1 className="mb-1 fw-bold">Sign in</h1>
-                  <span>
-                    Don’t have an account?
-                    <Link to="/register/" className="ms-1">
-                      Sign up
-                    </Link>
-                  </span>
-                </div>
+                <AuthCTA />
                 {/* Form */}
-                <form className="needs-validation" noValidate="">
-                  {/* Username */}
+                <form
+                  className="needs-validation"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
+                  {/* Email */}
+
                   <div className="mb-3">
-                    <label htmlFor="email" className="form-label">
-                      Email Address
-                    </label>
-                    <input
+                    <Input
+                      {...register("email", {
+                        required: true,
+                        pattern:
+                          "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$i",
+                        min: 15,
+                        max: 30,
+                      })}
+                      ref={ref}
                       type="email"
-                      id="email"
-                      className="form-control"
-                      name="email"
                       placeholder="johndoe@gmail.com"
-                      required=""
                     />
-                    <div className="invalid-feedback">
-                      Please enter valid username.
-                    </div>
                   </div>
                   {/* Password */}
+
                   <div className="mb-3">
-                    <label htmlFor="password" className="form-label">
-                      Password
-                    </label>
-                    <input
+                    <Input
+                      {...register("password", {
+                        required: true,
+                        minLength: 8,
+                        maxLength: 20,
+                      })}
+                      ref={ref}
                       type="password"
-                      id="password"
-                      className="form-control"
-                      name="password"
                       placeholder="**************"
-                      required=""
                     />
-                    <div className="invalid-feedback">
-                      Please enter valid password.
-                    </div>
                   </div>
                   {/* Checkbox */}
                   <div className="d-lg-flex justify-content-between align-items-center mb-4">
                     <div className="form-check">
-                      <input
+                      <Input
+                        {...register("remember", {
+                          required: true,
+                        })}
+                        ref={ref}
+                        id="remember"
                         type="checkbox"
-                        className="form-check-input"
-                        id="rememberme"
-                        required=""
                       />
-                      <label className="form-check-label" htmlFor="rememberme">
-                        Remember me
-                      </label>
-                      <div className="invalid-feedback">
-                        You must agree before submitting.
-                      </div>
                     </div>
                     <div>
                       <Link to="/forgot-password/">Forgot your password?</Link>
                     </div>
                   </div>
                   <div>
+                    {/* button */}
                     <div className="d-grid">
-                      <button type="submit" className="btn btn-primary">
-                        Sign in <i className='fas fa-sign-in-alt'></i>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn btn-primary"
+                      >
+                        {isSubmitting ? "Loading..." : "Submit"}
+                        Sign in <i className="fas fa-sign-in-alt"></i>
                       </button>
                     </div>
                   </div>
@@ -92,11 +106,7 @@ function Login() {
           </div>
         </div>
       </section>
-
-
       <BaseFooter />
     </>
-  )
+  );
 }
-
-export default Login
