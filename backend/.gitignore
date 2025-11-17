@@ -1,2 +1,21 @@
-venv
-.env
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# static files and database
+db.sqlite3
+media/
+staticfiles/
+
+# Virtual environment
+env/
+venv/
+
+# Django migrations cache
+*/migrations/__pycache__/
+
+# Local settings
+*.env
+
