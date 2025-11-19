@@ -2,15 +2,17 @@ import { useForm } from "react-hook-form";
 import { register as registerUser } from "../../utils/auth";
 import BaseHeader from "../base-components/BaseHeader";
 import BaseFooter from "../base-components/BaseFooter";
-import Input from "../../components/Input";
+import Input from "../../components/input/Input";
 import AuthCTA from "../../components/auth/AuthCTA";
+import { useAlert } from "../../utils/AlertContext";
 import "../../App.css";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+
+import { useNavigate, Link } from "react-router-dom";
 
 function Register() {
   const navigate = useNavigate();
-
+  //get showAlert from Context
+  const { showAlert } = useAlert();
   // we use useForm from react-hook-form library, for simplify validations and manage and send form data
   const {
     register,
@@ -29,20 +31,21 @@ function Register() {
 
   const onSubmit = async (submittedValues) => {
     const { fullName, email, password, password2 } = submittedValues;
-    const { data, error } = await registerUser(
-      fullName,
-      email,
-      password,
-      password2,
-    );
-    if (error) {
-      Swal.fire(error);
+    await registerUser(fullName, email, password, password2);
+    if (errors) {
+      showAlert("error", {
+        text: "user with this email already exists. Please try again.",
+      });
     } else {
+      // Visa fel-alert
+
+      showAlert("success", {
+        title: "Registration successful!",
+        text: "Your account has been set up!",
+      });
       navigate("/");
     }
   };
-  const onError = (errors) => console.log(errors);
-
   return (
     <>
       <BaseHeader />
@@ -55,12 +58,13 @@ function Register() {
           <div className="col-lg-5 col-md-8 py-8 py-xl-0">
             <div className="card shadow">
               <div className="card-body p-6">
+                {/* Auth header */}
                 <AuthCTA />
                 {/* Form */}
                 <form
                   className="needs-validation"
-                  onSubmit={handleSubmit(onSubmit, onError)}
-                  noValidate=""
+                  onSubmit={handleSubmit(onSubmit)}
+                  noValidate
                 >
                   {/* Username */}
                   <div className="mb-3">
@@ -85,7 +89,7 @@ function Register() {
                       placeholder="John Doe"
                     />
                     {errors.fullName && (
-                      <p className="text-danger">{errors.fullName.message}</p>
+                      <p className="is-invalid ">{errors.fullName.message}</p>
                     )}
                   </div>
                   <div className="mb-3">
@@ -112,7 +116,7 @@ function Register() {
                       placeholder="johndoe@gmail.com"
                     />
                     {errors.email && (
-                      <p className="text-danger" role="alert">
+                      <p className="is-invalid " role="alert">
                         {errors.email.message}
                       </p>
                     )}
@@ -136,7 +140,7 @@ function Register() {
                       placeholder="**************"
                     />
                     {errors.password && (
-                      <p className="text-danger">{errors.password.message}</p>
+                      <p className="is-invalid ">{errors.password.message}</p>
                     )}
                   </div>
                   <div className="mb-3">
@@ -162,12 +166,29 @@ function Register() {
                       <p className="is-invalid">{errors.password2.message}</p>
                     )}
                   </div>
+                  {/* Checkbox */}
+                  <div className="d-flex justify-content-start mb-4 p-0">
+                    <div className="form-check p-0">
+                      <Input
+                        {...register("remember", {
+                          required: true,
+                        })}
+                        id="remember"
+                        type="checkbox"
+                      />
+                    </div>
+                    <div>
+                      <Link to="#" className="form-link text-nowrap">
+                        Remember me
+                      </Link>
+                    </div>
+                  </div>
                   <div>
-                    <div className="d-grid">
+                    <div>
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn btn-primary"
+                        className="btn btn-primary w-100 py-2 rounded-4"
                       >
                         Sign Up <i className="fas fa-user-plus"></i>
                         {isSubmitting ? "Loading..." : ""}

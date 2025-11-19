@@ -1,5 +1,5 @@
 import { forwardRef } from "react";
-
+import "../../components/input/Input.css";
 const Input = forwardRef(
   (
     {
@@ -41,7 +41,7 @@ const Input = forwardRef(
     }
 
     return (
-      <div className="mb-3">
+      <div>
         {label && (
           <label htmlFor={id} className="form-label">
             {label}

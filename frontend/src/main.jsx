@@ -4,11 +4,14 @@ import { ErrorBoundary } from "react-error-boundary";
 import FallbackUI from "./components/FallBackUI.jsx";
 import "./index.css";
 import App from "./App.jsx";
+import { GlobalAlertProvider } from "./utils/AlertContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ErrorBoundary FallbackComponent={FallbackUI}>
-      <App />
+      <GlobalAlertProvider>
+        <App />
+      </GlobalAlertProvider>
     </ErrorBoundary>
   </StrictMode>,
 );

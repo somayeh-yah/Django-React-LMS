@@ -2,7 +2,6 @@ import { userAuthInformationStore } from "../store/auth";
 import axios from "./axios";
 import jwt_decode from "jwt-decode";
 import Cookie from "js-cookie";
-import Swal from "sweetalert2";
 
 // ---------------- LOGIN -----------------
 export const login = async (email, password) => {
@@ -13,26 +12,17 @@ export const login = async (email, password) => {
     });
     if (status == 200) {
       setAuthUser(data.access, data.refresh);
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "You have successfully logged in. ",
-        customClass: {
-          title: "sweetAlert",
-        },
-      });
+      return data;
     }
 
     return { data, error: null };
   } catch (error) {
-    Swal.fire({
-      position: "top",
-      icon: "error",
-      title: "Something went wrong, please try again!",
-      customClass: {
-        title: "sweetAlert",
-      },
-    });
+     const errMessage =
+      error?.response?.data?.email?.[0] ||
+      error?.response?.data?.detail ||
+      "Något gick fel vid registrering.";
+
+    console.log(errMessage);
     return {
       data: null,
       error:
@@ -45,6 +35,7 @@ export const login = async (email, password) => {
 // ------------- REGISTER -----------------
 //register a new user and logged in them
 export const register = async (full_name, email, password, password2) => {
+  // const { showAlert } = useAlert();
   try {
     const { data } = await axios.post("user/register/", {
       full_name,
@@ -54,28 +45,19 @@ export const register = async (full_name, email, password, password2) => {
     });
 
     await login(email, password);
-    Swal.fire({
-      position: "top",
-      icon: "success",
-      title: "Congratulations, your account is ready",
-      customClass: {
-        title: "sweetAlert",
-      },
-    });
-
+    // showAlert("Congratulations, your account is ready");
     return { data, error: null };
   } catch (error) {
-    Swal.fire({
-      position: "top",
-      icon: "error",
-      title: `${error?.response?.data?.email?.[0]}`,
-      customClass: {
-        title: "sweetAlert",
-      },
-      width: "50vw",
-    });
+    const errMessage =
+      error?.response?.data?.email?.[0] ||
+      error?.response?.data?.detail ||
+      "Något gick fel vid registrering.";
+
+    console.log(errMessage);
+
     return {
       data: null,
+      error: errMessage,
     };
   }
 };
@@ -87,15 +69,6 @@ export const logout = () => {
   Cookie.remove("access_token");
   Cookie.remove("refresh_token");
   userAuthInformationStore.getState().setUser(null);
-  Swal.fire({
-    position: "top",
-    icon: "success",
-    title: "You have been logged out successfully",
-    customClass: {
-      title: "sweetAlert",
-    },
-  });
-  // alert("You have been logged out successfully");
 };
 
 // -------------- SET-USER ----------------------
@@ -116,7 +89,7 @@ export const setUser = async () => {
 
     // Kolla om access token har gått ut
     if (isAccessTokenExpierd(access)) {
-      const response = await getRefreshedToken(); // OBS: await!
+      const response = await getRefreshedToken();
       access = response.access;
       refresh = response.refresh;
     }
