@@ -1,29 +1,16 @@
-import { useState } from "react";
-import "./Search.css";
-export default function Search({ placeholder = "Search...", onSearch }) {
-  const [query, setQuery] = useState("");
+import { Search as SearchIcon } from "lucide-react";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSearch(query);
-  };
+function Search({ placeholder = "Search..." }) {
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="d-flex justify-content-center align-items-center w-100"
-      role="search"
-    >
+    <div className="relative w-full">
+      <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-sub/60" />
       <input
-        className="search ms-2"
         type="text"
-        value={query}
         placeholder={placeholder}
-        aria-label="Search Courses"
-        onChange={(e) => setQuery(e.target.value)}
+        className="w-full rounded-lg border border-accent-1/20 bg-surface px-10 py-2 transition-colors placeholder:text-sub/50 focus:border-accent-1/40 focus:outline-none focus:ring-2 focus:ring-accent-1/20"
       />
-      <button className="btn " type="submit">
-        Search <i className="fas fa-search"></i>
-      </button>
-    </form>
+    </div>
   );
 }
+
+export default Search;

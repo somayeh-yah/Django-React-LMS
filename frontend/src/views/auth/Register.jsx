@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import { register as registerUser } from "../../utils/auth";
-import BaseHeader from "../base-components/BaseHeader";
-import BaseFooter from "../base-components/BaseFooter";
 import Input from "../../components/input/Input";
 import AuthCTA from "../../components/auth/AuthCTA";
 import { useAlert } from "../../utils/AlertContext";
+import formImage from "../../assets/images/form-img.png";
 import "../../App.css";
-
 import { useNavigate, Link } from "react-router-dom";
+import BaseHeader from "../base-components/BaseHeader";
+import BaseFooter from "../base-components/BaseFooter";
 
 function Register() {
   const navigate = useNavigate();
@@ -49,25 +49,32 @@ function Register() {
   return (
     <>
       <BaseHeader />
-
-      <section
-        className="container d-flex flex-column vh-100"
-        style={{ marginTop: "150px" }}
-      >
-        <div className="row align-items-center justify-content-center g-0 h-lg-100 py-8">
-          <div className="col-lg-5 col-md-8 py-8 py-xl-0">
-            <div className="card shadow">
-              <div className="card-body p-6">
-                {/* Auth header */}
-                <AuthCTA />
-                {/* Form */}
-                <form
-                  className="needs-validation"
-                  onSubmit={handleSubmit(onSubmit)}
-                  noValidate
-                >
+      <div className="py-15 lg:py-40 flex justify-center w-full h-full">
+        <div className="mx-auto w-full lg:px-20">
+          <div className="flex flex-col w-full lg:flex-row lg:w-full bg-light rounded-sm shadow-sm mx-auto overflow-hidden">
+            {/* IMAGE BACKGROUND */}
+            <div
+              className="w-full min-h-[350px] lg:min-h-full lg:w-1/2 flex flex-col items-center justify-center py-2 px-4 bg-no-repeat bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${formImage})`,
+              }}
+              aria-hidden="true"
+              alt="view over stockholm"
+              loading="lazy"
+            >
+              {/* <h1 className="text-sans text-4xl bg-surface text-heading px-14">
+                Welcome
+              </h1> */}
+            </div>
+            {/* FORM */}
+            <div className="w-full lg:w-1/2 py-16 px-12">
+              {/* Auth header */}
+              <AuthCTA />
+              {/* Form */}
+              <form onSubmit={handleSubmit(onSubmit)} noValidate>
+                <div className="grid gap-3 mb-6">
                   {/* Username */}
-                  <div className="mb-3">
+                  <div>
                     <Input
                       {...register("fullName", {
                         required: "Use only letters and spaces",
@@ -87,12 +94,13 @@ function Register() {
                       type="text"
                       id="fullName"
                       placeholder="John Doe"
+                      label="Full name"
                     />
                     {errors.fullName && (
                       <p className="is-invalid ">{errors.fullName.message}</p>
                     )}
                   </div>
-                  <div className="mb-3">
+                  <div>
                     <Input
                       {...register("email", {
                         required:
@@ -114,6 +122,7 @@ function Register() {
                       })}
                       type="email"
                       placeholder="johndoe@gmail.com"
+                      label="Enter your email address"
                     />
                     {errors.email && (
                       <p className="is-invalid " role="alert">
@@ -123,7 +132,7 @@ function Register() {
                   </div>
 
                   {/* Password */}
-                  <div className="mb-3">
+                  <div>
                     <Input
                       {...register("password", {
                         required: "Please, enter a valid password.",
@@ -138,12 +147,13 @@ function Register() {
                       })}
                       type="password"
                       placeholder="**************"
+                      label="Enter your password"
                     />
                     {errors.password && (
                       <p className="is-invalid ">{errors.password.message}</p>
                     )}
                   </div>
-                  <div className="mb-3">
+                  <div>
                     <Input
                       {...register("password2", {
                         required: "Please enter the requierd password.",
@@ -161,6 +171,7 @@ function Register() {
                       })}
                       type="password"
                       placeholder="**************"
+                      label="Confirm password"
                     />
                     {errors.password2 && (
                       <p className="is-invalid">{errors.password2.message}</p>
@@ -178,7 +189,10 @@ function Register() {
                       />
                     </div>
                     <div>
-                      <Link to="#" className="form-link text-nowrap">
+                      <Link
+                        to="#"
+                        className="ml-1.5 text-sm text-accent-2 dark:text-body font-semibold flex justify-center items-baseline"
+                      >
                         Remember me
                       </Link>
                     </div>
@@ -188,20 +202,19 @@ function Register() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn btn-primary w-100 py-2 rounded-4"
+                        className="w-full bg-accent-2 hover:bg-accent-2/95 py-3 text-center text-light"
                       >
                         Sign Up <i className="fas fa-user-plus"></i>
                         {isSubmitting ? "Loading..." : ""}
                       </button>
                     </div>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
-
+      </div>
       <BaseFooter />
     </>
   );

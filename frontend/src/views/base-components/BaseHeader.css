@@ -1,6 +1,4 @@
-/* **************************** */
-/*         HEADER               */
-/********************************/
+/* 
 .baseHeader {
   background-color: var(--color-secondary);
   color: var(--color-secondary);
@@ -24,8 +22,13 @@
   text-decoration: unset;
   white-space: nowrap;
   cursor: pointer;
+  color: var( --accent-1);
+}
+
+.baseHeader .nav-link:hover {
+  color: var(--accent-2);
 }
 
 .baseHeader .b-header-icon {
   margin-left: 3rem;
-}
+} */

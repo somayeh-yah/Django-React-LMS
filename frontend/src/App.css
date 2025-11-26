@@ -1,89 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
-/* ****************************** */
-/*         LIGHT MODE            */
-/* ******************************/
-
-:root {
-  /* -------- Colors -------- */
-  --color-primary: oklch(0.9884 0.0013 286.38);
-  --color-secondary: oklch(0.9551 0 0);
-
-  --accent-1: oklch(42.1% 0.07 186);
-  --accent-2: oklch(0.1957 0 0);
-  --accent-3: oklch(0.3979 0 0);
-
-  --color-error: oklch(59.9% 0.2 27);
-  --color-success: oklch(75.1% 0.18 145);
-  --color-warning: oklch(84.4% 0.17 85);
-
-  /* -------- Text Colors -------- */
-  --text-primary: oklch(0.1957 0 0); 
-  --text-secondary: oklch(30% 0 0); 
-  --text-light: oklch(98% 0 0); 
-
-  /* -------- Typography -------- */
-  --font-family-primary:
-    "Mona Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  --font-family-secondary: "Poppins", "Merriweather", "Georgia", serif;
-
-  /* Font sizes */
-  --fs-h1: clamp(2.5rem, 5vw, 3.5rem);
-  --fs-h2: clamp(2rem, 4vw, 2.8rem);
-  --fs-h3: clamp(1.75rem, 3vw, 2.2rem);
-  --fs-h4: clamp(1.5rem, 2.5vw, 1.9rem);
-  --fs-h5: clamp(1.25rem, 2vw, 1.6rem);
-  --fs-h6: clamp(1.125rem, 1.5vw, 1.3rem);
-
-  --fs-text-body: 1rem;
-  --fs-s: 0.875rem;
-  --fs-xs: 0.75rem;
 
 
-  /* Line height */
-  --lh-sm: 1.1;
-  --lh-md: 1.5;
-  --lh-lg: 1.7;
-
-  /* Spacing scale */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-5: 1.5rem;
-  --space-6: 2rem;
-
-  /* Radius */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 30%;
-
-  /* Shadows */
-  --shadow-sm:  0px 3px 10px 0px rgba(31, 31, 31, 0.04);
-  --shadow-md: 0px 3px 10px 0px rgba(31, 31, 31, 0.4);
-}
-
-/*********************************/
-/*           DARK MODE           */
-/* *******************************/
-
-[data-theme="dark"] {
-  /*  Colors  */
-  --color-primary: oklch(20% 0 0); 
-  --color-secondary: oklch(28% 0 0); 
-
-  --accent-1: oklch(50% 0.07 186); 
-  --accent-2: oklch(94% 0 0); 
-  --accent-3: oklch(56.7% 0.00401 220.285);
-
-  /*  Text Colors  */
-  --text-primary: oklch(95% 0 0); 
-  --text-secondary: oklch(70% 0 0);
-
-  /*  Shadow  */
-  --shadow-color: oklch(0 0 0 / 0.5);
-}
-
+/* 
 html {
   box-sizing: border-box;
 }
@@ -104,15 +21,18 @@ body {
 a{
   text-decoration:none;
   text-underline-offset: 3px;
+
 }
 a:hover {
   text-decoration: underline .8px;
-}
+} 
+  
+
 
 /* ----------  FORM ---------------- */
 
 /* --------------------------------- */
-.form-link {
+/* .form-link {
   text-decoration:underline 2px;
   font-size: var(--fs-xs);
   font-weight:600;
@@ -138,13 +58,13 @@ a:hover {
   font-size:var(--fs-text-body);
   font-family: var(--font-family-secondary);
  
-}
+} */
 
 /* --------------------------------- */
 
 /* ---------- /FORM ---------------- */
 
-@keyframes logo-spin {
+/* @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
@@ -165,13 +85,5 @@ a:hover {
 
 .read-the-docs {
   color: #888;
-}
-
-/* @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 } */
+

@@ -15,39 +15,29 @@ const Input = forwardRef(
     },
     ref,
   ) => {
-    // Checkbox renderas annorlunda
     if (type === "checkbox") {
       return (
-        <div className="form-check">
-          <input
-            id={id}
-            name={name}
-            type="checkbox"
-            className={`form-check-input ${error ? "is-invalid" : ""}`}
-            onChange={onChange}
-            required={required}
-            ref={ref}
-            checked={value}
-          />
-          {label && (
-            <label className="form-check-label" htmlFor={id}>
-              {label}
-            </label>
-          )}
-          {/* <ValidationMessage message={errors.email} /> */}
-          {/* {error && <div className="invalid-feedback d-block">{error}</div>} */}
-        </div>
+        <input
+          id={id}
+          name={name}
+          type="checkbox"
+          className={`w-4 h-4 borderbg-neutral-secondary-medium border border-default-medium rounded-lg focus:ring-accent-2 focus:border-accent-2 cursor-pointer shadow-sm ${error ? "is-invalid" : ""} `}
+          onChange={onChange}
+          required={required}
+          ref={ref}
+          checked={value}
+        />
       );
     }
 
     return (
-      <div>
-        {label && (
-          <label htmlFor={id} className="form-label">
-            {label}
-          </label>
-        )}
-
+      <>
+        <label
+          htmlFor={id}
+          className="w-full block mb-2.5 after:text-red-500 after:content-['*'] text-sm font-medium text-heading"
+        >
+          <span className="text-sm text-accent-3/80 mb-0">{label}</span>
+        </label>
         <input
           id={id}
           type={type}
@@ -57,9 +47,10 @@ const Input = forwardRef(
           onChange={onChange}
           required={required}
           ref={ref}
-          className={`form-control ${error ? "is-invalid" : ""}`}
+          label={label}
+          className={`bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs m-0 placeholder:text-accent-3/50 placeholder:text-sm ${error ? "is-invalid" : ""}`}
         />
-      </div>
+      </>
     );
   },
 );
