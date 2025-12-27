@@ -5,8 +5,8 @@ export default function AuthCTA() {
   const isLogin = pathname.includes("login");
 
   return (
-    <>
-      <h1 className="mb-4 text-h1 font-sans font-extrabold">
+    <div className="md:py-3 lg:px-6 lg:pb-3">
+      <h1 className="sm:mb-4 mt-0 text-h1 font-sans font-extrabold">
         {isLogin ? "Sign in" : "Sign up"}
       </h1>
       <span className="mb-4">
@@ -36,6 +36,6 @@ export default function AuthCTA() {
           </>
         )}
       </span>
-    </>
+    </div>
   );
 }

@@ -8,6 +8,7 @@ import "../../App.css";
 import { useNavigate, Link } from "react-router-dom";
 import BaseHeader from "../base-components/BaseHeader";
 import BaseFooter from "../base-components/BaseFooter";
+import { icons } from "../../utils/icons";
 
 function Register() {
   const navigate = useNavigate();
@@ -26,35 +27,40 @@ function Register() {
       email: "",
       password: "",
       password2: "",
+      checkbox: "",
     },
   });
 
   const onSubmit = async (submittedValues) => {
     const { fullName, email, password, password2 } = submittedValues;
-    await registerUser(fullName, email, password, password2);
-    if (errors) {
-      showAlert("error", {
-        text: "user with this email already exists. Please try again.",
-      });
-    } else {
-      // Visa fel-alert
-
+    try {
+      const res = await registerUser(fullName, email, password, password2);
+      if (res?.error) {
+        showAlert("error", {
+          text: "user with this email already exists. Please try again.",
+        });
+        return;
+      }
       showAlert("success", {
         title: "Registration successful!",
         text: "Your account has been set up!",
       });
-      navigate("/");
+      navigate("/dashboard/");
+    } catch (err) {
+      showAlert("error", {
+        text: err?.error || "Something went wrong. Please try again.",
+      });
     }
   };
   return (
     <>
       <BaseHeader />
       <div className="py-15 lg:py-40 flex justify-center w-full h-full">
-        <div className="mx-auto w-full lg:px-20">
-          <div className="flex flex-col w-full lg:flex-row lg:w-full bg-light rounded-sm shadow-sm mx-auto overflow-hidden">
+        <div className="mx-auto w-full lg:px-20 ">
+          <div className="flex flex-col mx-auto sm:w-[600px] max-h-[auto] lg:flex-row lg:w-full rounded-sm shadow-sm overflow-hidden">
             {/* IMAGE BACKGROUND */}
             <div
-              className="w-full min-h-[350px] lg:min-h-full lg:w-1/2 flex flex-col items-center justify-center py-2 px-4 bg-no-repeat bg-cover bg-center"
+              className="w-full min-h-[350px] lg:min-h-full lg:w-1/2 flex flex-col items-center justify-center xs:py-0 sm:py-2 px-4 bg-no-repeat bg-cover bg-center"
               style={{
                 backgroundImage: `url(${formImage})`,
               }}
@@ -67,12 +73,12 @@ function Register() {
               </h1> */}
             </div>
             {/* FORM */}
-            <div className="w-full lg:w-1/2 py-16 px-12">
+            <div className="w-full lg:w-1/2 px-3 sm:py-16 sm:px-12  lg:py-30">
               {/* Auth header */}
               <AuthCTA />
               {/* Form */}
               <form onSubmit={handleSubmit(onSubmit)} noValidate>
-                <div className="grid gap-3 mb-6">
+                <div className="grid gap-3 mb-6 lg:px-6">
                   {/* Username */}
                   <div>
                     <Input
@@ -97,7 +103,9 @@ function Register() {
                       label="Full name"
                     />
                     {errors.fullName && (
-                      <p className="is-invalid ">{errors.fullName.message}</p>
+                      <p className="text-error text-sm ms-1">
+                        {errors.fullName.message}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -125,7 +133,7 @@ function Register() {
                       label="Enter your email address"
                     />
                     {errors.email && (
-                      <p className="is-invalid " role="alert">
+                      <p className="text-error text-sm ms-1" role="alert">
                         {errors.email.message}
                       </p>
                     )}
@@ -150,9 +158,12 @@ function Register() {
                       label="Enter your password"
                     />
                     {errors.password && (
-                      <p className="is-invalid ">{errors.password.message}</p>
+                      <p className="text-error text-sm ms-1">
+                        {errors.password.message}
+                      </p>
                     )}
                   </div>
+                  {/* Password- 2 */}
                   <div>
                     <Input
                       {...register("password2", {
@@ -174,7 +185,9 @@ function Register() {
                       label="Confirm password"
                     />
                     {errors.password2 && (
-                      <p className="is-invalid">{errors.password2.message}</p>
+                      <p className="text-error text-sm ms-1">
+                        {errors.password2.message}
+                      </p>
                     )}
                   </div>
                   {/* Checkbox */}
@@ -182,7 +195,7 @@ function Register() {
                     <div className="form-check p-0">
                       <Input
                         {...register("remember", {
-                          required: true,
+                          required: false,
                         })}
                         id="remember"
                         type="checkbox"
@@ -191,23 +204,28 @@ function Register() {
                     <div>
                       <Link
                         to="#"
-                        className="ml-1.5 text-sm text-accent-2 dark:text-body font-semibold flex justify-center items-baseline"
+                        className="ml-1.5 text-sm text-body dark:text-body font-semibold flex justify-center items-baseline"
                       >
                         Remember me
                       </Link>
                     </div>
                   </div>
-                  <div>
-                    <div>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-accent-2 hover:bg-accent-2/95 py-3 text-center text-light"
-                      >
-                        Sign Up <i className="fas fa-user-plus"></i>
-                        {isSubmitting ? "Loading..." : ""}
-                      </button>
-                    </div>
+                  {/* BUTTON SECTION */}
+
+                  <div className="flex  ">
+                    <button
+                      type="submit"
+                      className="button w-full py-3"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <span className="inline-flex animate-spin [animation-duration:2s]">
+                          {icons.loading}
+                        </span>
+                      ) : (
+                        <>Sign up {icons.register}</>
+                      )}
+                    </button>
                   </div>
                 </div>
               </form>

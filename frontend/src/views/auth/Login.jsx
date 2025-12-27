@@ -43,6 +43,7 @@ export default function Login() {
         title: "You are loggd in!",
         text: "Your account is up to set!",
       });
+      navigate("/dashboard/");
     }
     console.log(formData);
   };

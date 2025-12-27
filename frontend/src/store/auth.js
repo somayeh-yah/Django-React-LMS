@@ -4,7 +4,7 @@ import { mountStoreDevtool } from "simple-zustand-devtools"
 const userAuthInformationStore = create((set, get) =>({
     userData:null,
     loading:false,
-
+    
 //here we create a arrow fuction to get user data
     user: () => ({
         user_id:get().userData?.user_id || null,
@@ -26,5 +26,6 @@ const userAuthInformationStore = create((set, get) =>({
 if (import.meta.env.DEV){
     mountStoreDevtool("Store", userAuthInformationStore)
 }
+
 
 export {userAuthInformationStore};

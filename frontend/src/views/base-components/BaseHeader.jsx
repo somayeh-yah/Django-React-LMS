@@ -2,18 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.svg";
 import Search from "../../components/Search/Search";
-import {
-  Phone,
-  UsersRound,
-  Award,
-  HandCoins,
-  ShoppingCart,
-  ChevronDown,
-  LogIn,
-  GraduationCap,
-  Users,
-} from "lucide-react";
-
+import { icons } from "../../utils/icons";
 function BaseHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [instructorOpen, setInstructorOpen] = useState(false);
@@ -28,9 +17,9 @@ function BaseHeader() {
   };
 
   return (
-    <header className="sticky top-4 z-40">
-      <div className="mx-auto w-full max-w-7xl px-3 py-3 sm:px-5 flex justify-center items-center">
-        <nav className="flex items-center justify-between gap-2 w-full rounded-xl border border-accent-1/20 bg-surface py-6 md:py-7 shadow-sm backdrop-blur-sm md:px-4 md:gap-4 lg:px-6 lg:py-4 lg:gap-6 ">
+    <header className="sticky top-4 z-40 w-auto px-1 mx-auto">
+      <div className="mx-auto sm:w-full sm:max-w-7xl sm:px-5 xs:mx-2.5 flex justify-center items-center">
+        <nav className="flex items-center justify-between gap-2 w-full font-sans rounded-xl border border-accent-1/20 bg-header py-6 md:py-7 shadow-sm backdrop-blur-sm px-2.5 md:px-4 md:gap-4 lg:px-6 lg:py-4 lg:gap-3 ">
           {/* Logo */}
           <Link to="/" className="flex shrink-0 items-center">
             <div className="flex items-center justify-center gap-1 mr-1">
@@ -39,13 +28,13 @@ function BaseHeader() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden items-center gap-1 lg:flex ">
+          <ul className="hidden items-center gap-1 lg:flex">
             <li>
               <Link
                 to="/pages/contact-us/"
                 className="inline-flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent-2/10"
               >
-                <Phone size={20} strokeWidth={1.5} />
+                {icons.phone}
                 <span className="text-nowrap">Contact Us</span>
               </Link>
             </li>
@@ -54,7 +43,7 @@ function BaseHeader() {
                 to="/pages/about-us/"
                 className="inline-flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent-2/10"
               >
-                <UsersRound size={20} strokeWidth={1.5} />
+                {icons.users}
                 <span className="text-nowrap">About Us</span>
               </Link>
             </li>
@@ -63,7 +52,7 @@ function BaseHeader() {
                 to="/pages/colleagues/"
                 className="inline-flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent-2/10"
               >
-                <Award size={20} strokeWidth={1.5} />
+                {icons.award}
                 <span className="text-nowrap">Case studies</span>
               </Link>
             </li>
@@ -72,37 +61,48 @@ function BaseHeader() {
                 to="/pages/coaches/"
                 className="inline-flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent-2/10"
               >
-                <HandCoins size={20} strokeWidth={1.5} />
+                {icons.pricing}
                 <span>Pricing</span>
               </Link>
             </li>
           </ul>
 
-          {/* Desktop Auth Buttons */}
+          {/* Desktop Search and  Auth Buttons */}
           <div className="hidden items-center gap-3 lg:flex ">
-            <Search />
+            {/* <Search placeholder="Search for Courses, Projects or goals" /> */}
             <Link
               to="/cart/"
               className="relative inline-flex items-center gap-2 rounded-md px-3 py-2 transition-colors hover:bg-accent-2/10"
             >
-              <ShoppingCart size={20} strokeWidth={1.5} />
-              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-xl bg-accent-2 text-xs text-light">
+              {icons.cart}
+              <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-xl bg-button-accent text-xs text-body bg-icon hover:bg-icon-hover font-semibold">
                 3
               </span>
             </Link>
 
-            <Link
-              to="/login/"
-              className="rounded-lg border border-accent-1/20 px-4 py-2 transition-colors hover:border-accent-1/40 hover:bg-accent-1/5 text-sub"
+            <button
+              hrf="/login/"
+              className=" bg-bt-strong py-2 px-4 text-hover rounded-3xl border font-semibold font-sans border-stone-200 hover:bg-bt-strong-hover hover:border-0 focus:outline-hidden focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900"
+              role="button "
+              type="submit"
             >
               Login
-            </Link>
+            </button>
 
-            <Link
-              to="/register/"
-              className="rounded-lg bg-accent-2 px-4 py-2 text-light shadow-sm transition-all hover:bg-accent-2/90 hover:shadow-md"
+            <button
+              hrf="/register/"
+              className="button"
+              role="button"
+              type="submit"
             >
-              Register
+              Sign up
+            </button>
+            <Link
+              to="/more/"
+              className="px-2 py-2.5 text-center hover:shadow-sm rounded-md transition-colors hover:bg-accent-2/10"
+              onClick={() => setMobileOpen(false)}
+            >
+              {icons.secondaryMenu}
             </Link>
           </div>
 
@@ -151,7 +151,7 @@ function BaseHeader() {
               className="inline-flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-accent-1/10"
               onClick={() => setMobileOpen(false)}
             >
-              <Phone size={20} strokeWidth={1.5} />
+              {icons.phone}
               <span>Contact Us</span>
             </Link>
             <Link
@@ -159,7 +159,7 @@ function BaseHeader() {
               className="inline-flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-accent-1/10"
               onClick={() => setMobileOpen(false)}
             >
-              <UsersRound size={20} strokeWidth={1.5} />
+              {icons.aboutUs}
               <span>About Us</span>
             </Link>
             <Link
@@ -167,7 +167,7 @@ function BaseHeader() {
               className="inline-flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-accent-1/10"
               onClick={() => setMobileOpen(false)}
             >
-              <Award size={20} strokeWidth={1.5} />
+              {icons.award}
               <span>Case studies</span>
             </Link>
             <Link
@@ -175,7 +175,7 @@ function BaseHeader() {
               className="inline-flex items-center gap-3 rounded-md px-3 py-2 transition-colors hover:bg-accent-1/10"
               onClick={() => setMobileOpen(false)}
             >
-              <HandCoins size={20} strokeWidth={1.5} />
+              {icons.pricing}
               <span>Pricing</span>
             </Link>
 
@@ -183,8 +183,8 @@ function BaseHeader() {
             <div className="my-3 border-t border-accent-1/10" />
 
             {/* Search in Mobile */}
-            <div className="px-1 mb-6">
-              <Search placeholder="Search Courses" />
+            <div className="px-1 mb-auto">
+              <Search placeholder="Search for Courses, Projects or goals" />
             </div>
 
             {/* Auth Buttons in Mobile */}
@@ -198,7 +198,7 @@ function BaseHeader() {
                 <span className="flex h-5 w-5 items-center justify-center rounded-full bg-accent-2 text-xs text-light">
                   3
                 </span>
-                <ShoppingCart size={20} strokeWidth={1.5} />
+                {icons.cart}
               </Link>
               <Link
                 to="/login/"
@@ -206,7 +206,7 @@ function BaseHeader() {
                 onClick={() => setMobileOpen(false)}
               >
                 <span>Login </span>
-                <LogIn size={20} strokeWidth={1.5} />
+                {icons.login}
               </Link>
               <Link
                 to="/register/"

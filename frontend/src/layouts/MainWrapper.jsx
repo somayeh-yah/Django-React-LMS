@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { setUser } from "../utils/auth";
-import { Container } from "lucide-react";
+// import { Loader } from "lucide-react";
+import { icons } from "../utils/icons";
 
 // A component that manages a loading state
 // It displays a loading state true while waiting for user data to be loaded,
@@ -20,10 +21,10 @@ const MainWrapper = ({ children }) => {
   }, []);
 
   return (
-    <main className="flex-1 overflow-y-auto">
+    <main className="min-h-screen transition-all duration-500 overflow-y-auto ">
       {loading ? (
-        <div style={{ textAlign: "center", marginTop: "50px" }}>
-          <p>Loading...</p>
+        <div className="flex justify-center items-center py-5 px-4 space-x-1">
+          {icons.loading} Loading…
         </div>
       ) : (
         children

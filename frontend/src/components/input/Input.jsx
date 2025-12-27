@@ -21,7 +21,7 @@ const Input = forwardRef(
           id={id}
           name={name}
           type="checkbox"
-          className={`w-4 h-4 borderbg-neutral-secondary-medium border border-default-medium rounded-lg focus:ring-accent-2 focus:border-accent-2 cursor-pointer shadow-sm ${error ? "is-invalid" : ""} `}
+          className={`w-4 h-4 borderbg-neutral-secondary-medium border border-default-medium rounded-lg focus:ring-accent-2 focus:border-accent-2 cursor-pointer shadow-sm `}
           onChange={onChange}
           required={required}
           ref={ref}
@@ -48,7 +48,7 @@ const Input = forwardRef(
           required={required}
           ref={ref}
           label={label}
-          className={`bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs m-0 placeholder:text-accent-3/50 placeholder:text-sm ${error ? "is-invalid" : ""}`}
+          className={`bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs m-0 placeholder:text-accent-3/50 placeholder:text-sm `}
         />
       </>
     );

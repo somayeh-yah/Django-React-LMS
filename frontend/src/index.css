@@ -4,42 +4,48 @@
 
 /*  MY DESIGN TOKENS/VARIABELS LIVES HERE */
 
+
+
 /* ****************************** */
 /*         LIGHT MODE            */
 /* ******************************/
 
-a{
-  text-decoration:none;
-  color: var(--color-accent-3);
-  
 
-}
-a:hover {
-  text-decoration: underline .8px;
-   color: var( --color-accent-1);
+
   
-} 
-  
-.is-invalid {
+/* .is-invalid {
   color: var(--color-error);
   margin-left:10px ;
-}
- @theme{
+} */
+@theme{
 
-    /* -------- BREAKPOINTS -------- */
+     /* -------- BREAKPOINTS -------- */
   --breakpoint-xs: 30rem;   /* 480px  */
   --breakpoint-sm: 40rem;   /* 640px  */
   --breakpoint-md: 48rem;   /* 768px  */
   --breakpoint-lg: 64rem;   /* 1024px */
   --breakpoint-xl: 80rem;   /* 1280px */
   --breakpoint-2xl: 96rem;  /* 1536px */
-    /* -------- BG & SURFACE COLORS-------- */
-  --color-background:oklch(0.5167 0.1039 0);
-  --color-surface: oklch(0.9766 0.0096 273.36);
+    
+  /* -------- BG COLORS-------- */
+  --color-background:oklch(0.987 0.0062 255.47);
+  --color-surface:oklch(0.987 0.0062 255.47);
 
-  --color-accent-1: oklch(0.317 0.0939 272.66);
-  --color-accent-2: oklch(44.368% 0.21598 267.512);
-  --color-accent-3: oklch(0.3979 0 0);
+  /* --------- BG HEDER ----------  */
+  --color-header:oklch(0.259 0.0398 259.33);
+
+  /* ------- COLOR BORDER ------------ */
+  --color-br:oklch(0.9484 0.0046 258.33);
+
+  /* ------ GRADIENT ----------- */
+
+  --color-gradient:linear-gradient(
+    to bottom right,
+   oklch(0.9842 0.0034 247.86), 
+   oklch(0.9705 0.0142 254.6), 
+    oklch(0.9299 0.0334 272.79)
+  );
+
 
      /* -------- FEEDBACK COLORS -------- */
   --color-error: oklch(59.9% 0.2 27);
@@ -47,24 +53,33 @@ a:hover {
   --color-warning: oklch(84.4% 0.17 85);
 
   /* -------- TEXT COLORS -------- */
-  --color-heading: oklch(0.1957 0 0); 
-  --color-sub: oklch(30% 0 0); 
-  --color-body: oklch(98% 0 0); 
+   --color-body: oklch(0.2084 0.0417 266.36); 
+  --color-muted: oklch(0.4454 0.043 257.42);
+  --color-hover: oklch(0.9748 0 0);
+
+ 
+ /* -----   BUTTON --------------- */
+  --color-bt-strong:oklch(0.2718 0.041 260.31);
+  --color-bt-strong-hover:oklch(0.3546 0.041 260.31);
 
   /* -------- FONT FAMILIES -------- */
   --font-heading: "Poppins", "Merriweather", "Georgia", serif;
   --font-sans:"Mona Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
   
+/* ---------  COLOR ICON ---------- */
+--color-icon:oklch(0.8666 0.0123 247.97);
+--color-icon-hover:oklch(0.9309 0.0094 242.84);
+
 
   /* FONT SIZES */
-  --text-xs: 0.75rem;
+  /* --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.125rem;
   --text-h4: 1.25rem;
   --text-h3: 1.5rem;
   --text-h2: 1.875rem;
-  --text-h1: 3.25rem;
+  --text-h1: 3.25rem; */
 
  
 
@@ -73,42 +88,60 @@ a:hover {
   --leading-normal: 1.5;
   --leading-relaxed: 1.7;
 
-  /* SPACING COLUMNS */
+    /* LETTER SPACING  */
+    ---tracking-xs:0.06.5em;
+    --tracking-sm:0.07em;
+   --tracking-lg:0.1em;
+  
+
+  /*------ SPACING COLUMNS ------ */ 
  --spacing-cols: 1.5rem;  
 
- /* SPACING SECTIONS */
+ /* ---- SPACING SECTIONS ------ */
   --spacing-section: 4rem; 
 
-  /* RADIUS */
-  --radius-xs: 2px;  
-  --radius-sm: 4px;  
-  --radius-md: 8px;   
-  --radius-lg: 12px;  
-  --radius-xl: 16px; 
+/* ----  RADIUS ------ */
+/* --radius-full:1.5rem; */
 
   /* SHADOWS */
   --shadow-sm:  0px 3px 10px 0px rgba(31, 31, 31, 0.04);
   --shadow-md: 0px 3px 10px 0px rgba(31, 31, 31, 0.4);
+
+}
+ 
 
   /*********************************/
 /*           DARK MODE           */
 /* *******************************/
 
 
-}
   [data-theme="dark"] {
   /*  Colors  */
   --color-background: oklch(0.2077 0.0694 268.75); 
   --color-surface: oklch(0.2431 0.0768 268.55); 
 
-  --color-accent-1: oklch(0.7313 0.0509 271.03); 
-  --color-accent-2:  oklch(94% 0 0); 
-  --color-accent-3: oklch(56.7% 0.00401 220.285);
+    /* --------- BG HEDER ----------  */
+  --color-header:oklch(0.7817 0.1115 245.73);
+
+   /* ------- COLOR BORDER ------------ */
+  --color-br:oklch(0.3499 0.0236 258.37);
+
+  
+
+  --color-gradient:linear-gradient(
+    to bottom right,
+    oklch(0.1288 0.0406 264.7), 
+    oklch(25.149% 0.04795 265.931), 
+    oklch(17.949% 0.0731 266.243) 
+  );
+  --color-primary: oklch(0.7313 0.0509 271.03); 
+  --color-primary-soft:  oklch(94% 0 0); 
+  --color-secondary: oklch(56.7% 0.00401 220.285);
 
   /* -------- TEXT COLORS -------- */
-  --color-heading: oklch(95% 0 0);  
-  --color-sub: oklch(0.8613 0 0);
-  --color-body: oklch(98% 0 0); 
+  --color-body: oklch(1 0 0);  
+  --color-muted:oklch(0.5542 0.046 257.53);
+
 
   /*  Shadow  */
   --shadow-sm: 0 6px 18px 0 oklch(0.1 0 0 / 0.5);  
@@ -116,3 +149,58 @@ a:hover {
 }
 
 
+
+
+@layer base{
+
+
+  a{
+    @apply no-underline text-red-950 hover:text-red-900/70;
+  }
+  body {
+    @apply font-sans text-body bg-background shadow-sm min-h-screen rounded-full ;
+    
+  }
+
+   .profile-row {
+    @apply relative inline-flex items-center text-center gap-3 ;
+  }
+
+  .profile-avatar {
+    @apply w-12 h-12 rounded-full object-cover border-2 border-gray-100 shadow-xl transition-transform;
+  }
+
+  .profile-avatar:hover {
+    @apply -translate-y-0.5;
+  }
+
+  .profile-tooltip-peer {
+    @apply absolute z-50 pointer-events-none whitespace-nowrap
+           bottom-full left-6
+           bg-stone-800 text-stone-50 text-xs px-2 py-1 rounded-md
+           opacity-0 invisible translate-y-0 transition-all;
+
+    @apply peer-hover:opacity-100 peer-hover:visible ;
+  }
+
+  
+  .search-input {
+   @apply w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-slate-800 dark:text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+ }
+  .button{
+    @apply inline-flex justify-center items-center text-pretty md:text-nowrap gap-2 border border-stone-200 px-6 py-2 transition-colors shadow-sm hover:border text-hover bg-sky-400 hover:bg-sky-300 font-sans font-semibold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900 rounded-full;
+  }
+
+  .profile {
+    @apply
+    w-8 h-8 rounded-full ring-2 ring-blue-500 object-cover;
+  }
+
+
+
+
+}
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
+}
