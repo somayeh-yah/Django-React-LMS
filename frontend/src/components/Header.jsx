@@ -1,5 +1,5 @@
 import { icons } from "../utils/icons";
-import Search from "./Search/Search";
+import Search from "../components/Search";
 import SingleProfile from "../components/profile/SingleProfile";
 import profileImg1 from "../assets/images/profile1.jpg";
 
@@ -20,7 +20,11 @@ export default function Header({ sideBarCollapsed, onToggleSidbar }) {
         {/* SECTION CENTER */}
         <div className="flex-1 max-w-md mx-8 ">
           <div className="relative">
-            <Search placeholder="Search by task or project..." />
+            <Search
+              placeholder="Search by task or project..."
+              icon1={icons.search}
+              icon2={icons.filter}
+            />
           </div>
         </div>
 

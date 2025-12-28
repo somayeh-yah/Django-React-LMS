@@ -1,11 +1,9 @@
-import { icons } from "../../utils/icons";
-
-function Search({ placeholder = "Search..." }) {
+function Search({ placeholder = "Search...", icon1, icon2 }) {
   return (
     <div className="relative w-full">
-      {icons.search}
+      {icon1}
       <input type="text" placeholder={placeholder} className="search-input" />
-      {icons.filter}
+      {icon2}
     </div>
   );
 }

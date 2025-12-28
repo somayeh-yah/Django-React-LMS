@@ -127,7 +127,7 @@ export default function KpiDetailView() {
         </section>
       </header>
 
-      {/* MAIN CONTENT */}
+      {/* SUB KPI MAIN CONTENT */}
       <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr]">
         {/* LEFT SUBGOAL SECTION */}
         <section
@@ -149,13 +149,9 @@ export default function KpiDetailView() {
             <ul
               role="listbox"
               aria-label="Subgoal list"
-              aria-activedescendant={
-                activeSub?.id ? formatId(kpi.id, activeSub.id) : undefined
-              }
-              tabIndex={0}
-              // onKeyDown={onListKeyDown}
               className="p-2 space-y-1 outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
             >
+              {/* KPI CARD LIST */}
               {subGoals.map((s) => {
                 const selected = String(s.id) === String(subId);
 
