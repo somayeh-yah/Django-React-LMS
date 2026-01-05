@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import BaseHeader from "../base-components/BaseHeader";
 import BaseFooter from "../base-components/BaseFooter";
 import AuthCTA from "../../components/auth/AuthCTA";
-import Input from "../../components/input/Input";
+// import Input from "../../components/input/Input";
 import { useAlert } from "../../utils/AlertContext";
 
 export default function Login() {

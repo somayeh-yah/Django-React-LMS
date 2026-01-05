@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { register as registerUser } from "../../utils/auth";
-import Input from "../../components/input/Input";
+// import Input from "../../components/input/Input";
 import AuthCTA from "../../components/auth/AuthCTA";
 import { useAlert } from "../../utils/AlertContext";
 import formImage from "../../assets/images/form-img.png";

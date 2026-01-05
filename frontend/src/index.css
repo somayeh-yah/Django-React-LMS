@@ -19,13 +19,6 @@
 } */
 @theme{
 
-     /* -------- BREAKPOINTS -------- */
-  --breakpoint-xs: 30rem;   /* 480px  */
-  --breakpoint-sm: 40rem;   /* 640px  */
-  --breakpoint-md: 48rem;   /* 768px  */
-  --breakpoint-lg: 64rem;   /* 1024px */
-  --breakpoint-xl: 80rem;   /* 1280px */
-  --breakpoint-2xl: 96rem;  /* 1536px */
     
   /* -------- BG COLORS-------- */
   --color-background:oklch(0.987 0.0062 255.47);
@@ -89,9 +82,9 @@
   --leading-relaxed: 1.7;
 
     /* LETTER SPACING  */
-    ---tracking-xs:0.06.5em;
-    --tracking-sm:0.07em;
-   --tracking-lg:0.1em;
+    ---tracking-xs:0.03.5em;
+    --tracking-sm:0.05em;
+   --tracking-lg:0.07em;
   
 
   /*------ SPACING COLUMNS ------ */ 
@@ -189,13 +182,19 @@
           focus:border-slate-300 placeholder:text-muted placeholder:text-sm transition-all;
  }
   .button{
-    @apply inline-flex justify-center items-center text-pretty md:text-nowrap gap-2 border border-stone-200 px-6 py-2 transition-colors shadow-sm hover:border text-hover bg-sky-400 hover:bg-sky-300 font-sans font-semibold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900 rounded-full;
+    @apply inline-flex justify-center items-center text-pretty md:text-nowrap gap-2 border border-stone-200 px-6 py-2 transition-colors shadow-sm hover:border text-hover bg-sky-400 hover:bg-sky-300 font-sans font-bold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900 rounded-full cursor-pointer tracking-sm;
+  }
+
+  .sec-button{
+    @apply rounded-full border border-slate-200 dark:border-slate-800 hover:border-slate-200/50 px-4 py-2 text-sm  focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-slate-100/50 cursor-pointer shadow-sm;
   }
 
   .profile {
     @apply
     w-8 h-8 rounded-full ring-2 ring-blue-500 object-cover;
   }
+
+  
 
 
 

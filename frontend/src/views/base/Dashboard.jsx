@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import UserSideBar from "../../components/UserSideBar";
-import Header from "../../components/Header";
+import MainHeader from "../../components/Dashboard/MainHeader";
 import ChartSection from "../../components/ChartSection";
 import Stats from "../../components/Dashboard/Stats";
-import TableSection from "../../components/Dashboard/TableSection";
+import TableRow from "../../components/Dashboard/TableRow";
 
 export default function Dashboard() {
   const [sideBarCollapsed, setSideBarCollapsed] = useState(false);
   const [currentPage, setCurrentPage] = useState("dashboard");
+
   return (
     <div className="min-h-screen transition-all duration-500 overflow-auto ">
       {/* DASHBOARD GRID */}
@@ -20,7 +21,7 @@ export default function Dashboard() {
         />
 
         <div className="flex-1 flex flex-col justify-start md:justify-around overflow-hidden bg-linear-to-r from-blue-100 to-purple-100">
-          <Header
+          <MainHeader
             sideBarCollapsed={sideBarCollapsed}
             onToggleSidbar={() => setSideBarCollapsed(!sideBarCollapsed)}
           />
@@ -28,7 +29,7 @@ export default function Dashboard() {
             <Stats />
             <ChartSection />
 
-            <TableSection />
+            <TableRow />
           </main>
         </div>
       </div>

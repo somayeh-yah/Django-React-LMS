@@ -1,4 +1,23 @@
-import SingleProfile from "../../components/profile/SingleProfile";
+export const teamOptions = [
+  { value: "Alice Johnson", label: "Alice Johnson" },
+  { value: "Bob Smith", label: "Bob Smith" },
+  { value: "Charlie Davis", label: "Charlie Davis" },
+  { value: "Dana Lee", label: "Dana Lee" },
+  { value: "Eva Kim", label: "Eva Kim" },
+  { value: "Frank Moore", label: "Frank Moore" },
+];
+
+export const statusOptions = [
+  { value: "new", label: "New" },
+  { value: "in progress", label: "In progress" },
+  { value: "pending", label: "Pending" },
+  { value: "completed", label: "Completed" },
+  { value: "cancelled", label: "Cancelled" },
+];
+
+
+
+
 export const kpiData = [
     {
       id: 1,

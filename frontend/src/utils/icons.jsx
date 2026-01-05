@@ -30,6 +30,8 @@ import {
   CloudUpload,
   CloudDownload,
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   TrendingUp,
   TrendingDown,
   DollarSign,
@@ -38,6 +40,12 @@ import {
   TriangleAlert,
   ArrowUpRight,
   ArrowDownRight,
+  Trash,
+  ArchiveRestore,
+  SquarePen,
+  Save,
+  Goal,
+  X,
 } from "lucide-react";
 
 export const icons = {
@@ -66,6 +74,26 @@ export const icons = {
   clock: <Clock size={20} strokeWidth={1.5} />,
   checkCirkel: <CircleCheckBig size={20} strokeWidth={1.5} />,
   alertTriangel: <TriangleAlert size={20} strokeWidth={1.5} />,
+  trash: <Trash size={20} strokeWidth={1.5} />,
+  save: <Save size={20} strokeWidth={1.5} />,
+  goal: <Goal size={20} strokeWidth={1.5} />,
+  close: <X size={20} strokeWidth={1.5} />,
+
+  archive: (
+    <ArchiveRestore
+      size={18}
+      strokeWidth={1.5}
+      className="text-slate-500 hover:text-blue-400 cursor-pointer"
+    />
+  ),
+  edit: (
+    <SquarePen
+      size={18}
+      strokeWidth={1.5}
+      className="text-slate-500 hover:text-blue-400 cursor-pointer"
+    />
+  ),
+
   arrowDownRight: (
     <ArrowDownRight
       size={20}
@@ -77,10 +105,11 @@ export const icons = {
     <UserStar size={20} strokeWidth={1.5} className="w-6 h-6 text-white" />
   ),
   messages: <MessagesSquare size={20} strokeWidth={1.5} />,
-  calendar: <Calendar size={20} strokeWidth={1.5} />,
+  calendar: <Calendar size={30} strokeWidth={1.5} />,
   fileUpload: <CloudUpload size={20} strokeWidth={1.5} />,
   cloudDownload: <CloudDownload size={20} strokeWidth={1.5} />,
-  arrowRight: <ArrowRight size={20} strokeWidth={1.5} />,
+  arrowRight: <ChevronRight size={18} strokeWidth={1.5} />,
+  arrowLeft: <ChevronLeft size={18} strokeWidth={1.5} />,
   dollarSign: <DollarSign size={20} strokeWidth={1.5} />,
   arrowUpRight: (
     <ArrowUpRight

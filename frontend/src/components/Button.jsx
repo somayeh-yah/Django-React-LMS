@@ -1,8 +1,8 @@
-// import { icons } from "../utils/icons";
-// export default function Button({ children, className = "", props }) {
-//   return (
-//     <button {...props} className={className}>
-//       {children}
-//     </button>
-//   );
-// }
+export default function Button({ icon, className = "", text = "", onClick }) {
+  return (
+    <button type="button" className={className} onClick={onClick}>
+      {icon}
+      {text}
+    </button>
+  );
+}

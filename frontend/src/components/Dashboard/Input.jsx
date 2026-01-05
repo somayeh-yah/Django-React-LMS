@@ -1,17 +1,17 @@
 import { forwardRef } from "react";
-import "../../components/input/Input.css";
+
 const Input = forwardRef(
   (
     {
       id,
       label,
       error,
-      name,
-      value,
       placeholder,
       type = "text",
-      required,
+      className,
+      icon,
       onChange,
+      ...rest
     },
     ref,
   ) => {
@@ -25,6 +25,7 @@ const Input = forwardRef(
           onChange={onChange}
           required={required}
           ref={ref}
+          {...rest}
           checked={value}
         />
       );
@@ -32,24 +33,31 @@ const Input = forwardRef(
 
     return (
       <>
-        <label
-          htmlFor={id}
-          className="w-full block mb-2.5 after:text-red-500 after:content-['*'] text-sm font-medium text-heading"
-        >
-          <span className="text-sm text-accent-3/80 mb-0">{label}</span>
-        </label>
+        {label && (
+          <label
+            htmlFor={id}
+            className="inline-flex items-center gap-1 mb-2 mt-5 ms-2 text-xs font-semibold text-muted"
+          >
+            <span className=" after:text-red-500 after:content-['*'] text-sm font-medium text-heading"></span>
+            {label}
+          </label>
+        )}
+
         <input
           id={id}
           type={type}
-          name={name}
-          value={value}
           placeholder={placeholder}
           onChange={onChange}
-          required={required}
           ref={ref}
+          {...rest}
           label={label}
-          className={`bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-lg focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs m-0 placeholder:text-accent-3/50 placeholder:text-sm `}
+          className="bg-neutral-secondary-medium border border-slate-400
+          text-heading text-xs rounded-3xl outline-none focus:outline-none focus:ring-0 focus:ring-slate-700
+          focus:border-slate-700 block w-full p-3.5 shadow-sm
+          placeholder:text-slate-400"
+          icon={icon}
         />
+        {error && <p className="mt-1 text-xs text-red-500 ms-2">{error}</p>}
       </>
     );
   },
