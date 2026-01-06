@@ -19,14 +19,11 @@ const Input = forwardRef(
       return (
         <input
           id={id}
-          name={name}
           type="checkbox"
           className={`w-4 h-4 borderbg-neutral-secondary-medium border border-default-medium rounded-lg focus:ring-accent-2 focus:border-accent-2 cursor-pointer shadow-sm `}
           onChange={onChange}
-          required={required}
           ref={ref}
           {...rest}
-          checked={value}
         />
       );
     }

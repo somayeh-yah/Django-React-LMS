@@ -9,7 +9,7 @@ export default function EmptyState() {
   };
 
   return (
-    <div className="h-full flex flex-col items-center justify-center p-20 text-center">
+    <div className="h-full flex flex-col items-center justify-start p-10 text-center">
       {icons.goal}
       <h3 className="text-lg font-medium text-body">No Goals/ Visions</h3>
       <p className="mt-2 text-sm text-slate-500 max-w-md">

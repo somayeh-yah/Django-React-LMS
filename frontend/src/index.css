@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 /*  MY DESIGN TOKENS/VARIABELS LIVES HERE */
 
 
@@ -82,7 +80,7 @@
   --leading-relaxed: 1.7;
 
     /* LETTER SPACING  */
-    ---tracking-xs:0.03.5em;
+    ---tracking-xs:0.035em;
     --tracking-sm:0.05em;
    --tracking-lg:0.07em;
   
