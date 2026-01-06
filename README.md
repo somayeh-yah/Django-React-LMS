@@ -24,14 +24,7 @@
 
 ## Screenshots and UI design
 
-<img width="584" height="331" alt="Dashboard3" src="https://github.com/user-attachments/assets/df17cd05-66f7-4823-997f-71820a05ccea" />
+<img width="745" height="396" alt="firefox_eaSb8LQYsZ" src="https://github.com/user-attachments/assets/4638a443-b691-4767-8e48-09ed840df87c" />
 
-<img width="506" height="341" alt="onboarding-sida" src="https://github.com/user-attachments/assets/b844f0b0-b06b-493a-864d-10e6c37383c5" />
-
-<img width="535" height="350" alt="Start-sida" src="https://github.com/user-attachments/assets/9fb91da2-9b22-433c-baa8-06c96d6f82da" />
-
-<img width="521" height="346" alt="Dashboard1" src="https://github.com/user-attachments/assets/5e91d3b0-e541-4ae2-9ddb-cf7dd6bc6d21" />
-
-<img width="579" height="287" alt="Dashboard2" src="https://github.com/user-attachments/assets/4345601a-c44c-4a34-aac3-60424c888a51" />
 
 
