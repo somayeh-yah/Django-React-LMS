@@ -22,9 +22,12 @@
 * get notifications
 * Implement email sending functionality using Django
 
-## Screenshots and UI design
+## Screenshots and Screen recording
 
 <img width="745" height="396" alt="firefox_eaSb8LQYsZ" src="https://github.com/user-attachments/assets/4638a443-b691-4767-8e48-09ed840df87c" />
+
+https://imgur.com/pIbG8PC
+
 
 
 
