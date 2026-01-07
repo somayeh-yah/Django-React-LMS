@@ -24,7 +24,14 @@
 
 ## Screenshots and Screen recording
 
-<img width="745" height="396" alt="firefox_eaSb8LQYsZ" src="https://github.com/user-attachments/assets/4638a443-b691-4767-8e48-09ed840df87c" />
+<img width="1129" height="766" alt="image" src="https://github.com/user-attachments/assets/2cc86204-7d38-4111-9e7d-add4e78a875e" />
+
+<img width="1132" height="768" alt="image" src="https://github.com/user-attachments/assets/18e8e8ea-7cf2-4457-8407-e5eadbfe7eae" />
+
+<img width="1314" height="455" alt="image" src="https://github.com/user-attachments/assets/256b7ab2-76e2-47ad-8606-1ddabca09e00" />
+
+
+
 
 https://imgur.com/pIbG8PC
 
