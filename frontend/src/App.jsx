@@ -5,6 +5,7 @@ import Login from "./views/auth/Login.jsx";
 import Dashboard from "./views/base/Dashboard.jsx";
 import KpiDetailView from "./views/base/KpiDetailView.jsx";
 import GoalAndVisions from "./views/base/GoalAndVisions.jsx";
+import SubGoalForm from "./components/Dashboard/SubGoalForm.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/kpi/:kpiId" element={<KpiDetailView />} />
           <Route path="/kpi/:kpiId/sub/:subId" element={<KpiDetailView />} />
           <Route path="/kpi/new" element={<GoalAndVisions />} />
+          <Route path="/kpi/:kpiId/sub/new" element={<SubGoalForm />} />
         </Routes>
       </MainWrapper>
     </BrowserRouter>

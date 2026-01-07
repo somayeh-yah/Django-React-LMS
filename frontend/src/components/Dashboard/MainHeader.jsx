@@ -7,7 +7,6 @@ import profileImg1 from "../../assets/images/profile1.jpg";
 import Button from "../Button";
 
 export default function MainHeader({ sideBarCollapsed, onToggleSidbar }) {
-  // const addNewKpi = useKpiStore((s) => s.addKpi);
   const navigate = useNavigate();
 
   const handleNavigate = () => {

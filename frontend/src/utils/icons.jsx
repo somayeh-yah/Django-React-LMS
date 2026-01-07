@@ -105,7 +105,7 @@ export const icons = {
     <UserStar size={20} strokeWidth={1.5} className="w-6 h-6 text-white" />
   ),
   messages: <MessagesSquare size={20} strokeWidth={1.5} />,
-  calendar: <Calendar size={30} strokeWidth={1.5} />,
+  calendar: <Calendar size={20} strokeWidth={1.5} />,
   fileUpload: <CloudUpload size={20} strokeWidth={1.5} />,
   cloudDownload: <CloudDownload size={20} strokeWidth={1.5} />,
   arrowRight: <ChevronRight size={18} strokeWidth={1.5} />,

@@ -1,78 +1,57 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useForm, FormProvider } from "react-hook-form";
+import { useKpiStore } from "../../store/kpiStore";
 import { useNavigate, useParams } from "react-router-dom";
-import { kpiData } from "../../constants/data/kpiData";
-import InfoCard from "../../components/Dashboard/InfoCard";
+
 import KpiList from "../../components/Dashboard/KpiList";
 import Button from "../../components/Button";
 import SmlBtn from "../../components/Dashboard/SmlBtn";
 
 import StatusBadge from "../../components/Dashboard/statusBadge";
-import ProgressBar from "../../components/Dashboard/ProgressBar";
-
-import TextFieldSection from "../../components/Dashboard/TextFieldSection";
+import SubGoalForm from "../../components/Dashboard/SubGoalForm";
 import { icons } from "../../utils/icons";
 import KpiDetailContainer from "../../components/Dashboard/KpiDetailContainer";
+
 import EmptyState from "../../components/EmptyState";
 import SubGoalHeader from "../../components/Dashboard/SubGoalHeader";
-
-// function formatId(kpiId, subId) {
-//   return `kpi-${kpiId}-sub-${subId}`;
-// }
 
 export default function KpiDetailView() {
   const navigate = useNavigate();
   const { kpiId, subId } = useParams();
+  // GET KPI BY ID
+  const kpi = useKpiStore((s) => s.getKpiById(kpiId));
+  const addSubGoals = useKpiStore((s) => s.addSubGoals);
 
-  const [subGoals, setSubGoals] = useState(() => {
-    const savedSubGoals = localStorage.getItem(`subGoals:${kpiId}`);
-    return savedSubGoals ? JSON.parse(savedSubGoals) : [];
+  const subGoals = kpi?.subGoals ?? [];
+
+  const isNew = subId === "new";
+  const activeSub =
+    !isNew && subId ? (subGoals.find((i) => i.id === subId) ?? null) : null;
+
+  const handleSubGoals = (subData) => {
+    const newSub = addSubGoals(kpiId, subData);
+    navigate(`/kpi/${kpiId}/sub/${newSub.id}`);
+  };
+
+  const methods = useForm({
+    defaultValues: {
+      goal: "",
+      issue: "",
+      importance: "",
+      deadline: "",
+      team: "",
+      status: "",
+      completed: false,
+      assigned: [],
+      createdAt: "Notset",
+      progress: "",
+    },
+    mode: "onSubmit",
   });
-  const [activeSub, setActiveSub] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem(`subGoals:${kpiId}`, JSON.stringify(subGoals));
-  }, [kpiId, subGoals]);
-
-  const handleSubGoals = () => {
-    // CREATE A NEW SUBGOAL
-    const newSubGoals = {
-      id: Date.now().toString(),
-      title: "Untitled  Subgoal",
-      assigned: "",
-      status: "no progress",
-      deadline: "--",
-      progress: 0,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toDateString(),
-    };
-    addSubGoals([newSubGoals, ...subGoals]);
-    navigate(`/kpi/${kpiId}/sub/${newSubGoals.id}`);
-    setIsEditing(true);
-  };
-
-  const addSubGoals = (subGoals) => {
-    // CREATE A NEW SUBGOAL
-    setSubGoals((prevSub) => [subGoals, ...prevSub]);
-  };
-  const updateSubGoal = (updatedSub) => {
-    setSubGoals((prevSub) =>
-      updatedSub.map((s) => (s.id === updatedSub.id ? updatedSub : s)),
-    );
-  };
-  const removeSubGole = (id) => {
-    setSubGoals((removedSub) => removedSub.filter((s) => s.id !== id));
-  };
-
-  const kpi = useMemo(
-    () => kpiData.find((k) => String(k.id) === String(kpiId)),
-    [kpiId],
-  );
 
   return (
     <div className="min-h-screen w-full">
       {/* KPI DETAIL HEADER */}
-      <SubGoalHeader addSubGoal={handleSubGoals} />
+      <SubGoalHeader addSubGoals={addSubGoals} />
       {/* SUB KPI MAIN CONTENT */}
       <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr]">
         {/* LEFT SUBGOAL SECTION */}
@@ -93,16 +72,13 @@ export default function KpiDetailView() {
           >
             {/* KPI CARD LIST */}
             {subGoals.map((s) => {
-              const selected = activeSub?.id === s.id;
-
               return (
                 <KpiList
                   key={s.id}
-                  selected={selected}
+                  selected={activeSub?.id === s.id}
                   subgoal={s}
                   onSelect={() => {
-                    setActiveSub(s);
-                    navigate(`/kpi/${kpi.id}/sub/${s.id}`);
+                    navigate(`/kpi/${kpiId.id}/sub/${s.id}`);
                   }}
                 />
               );
@@ -113,7 +89,14 @@ export default function KpiDetailView() {
 
         {/* RIGHT DETAIL SECTION */}
         <section id="subgoal-detail" className="p-6">
-          {activeSub ? (
+          {/* FORM CONTAINER */}
+          {isNew ? (
+            <div className="space-y-7">
+              <FormProvider {...methods}>
+                <SubGoalForm handleSubGoals={handleSubGoals} />
+              </FormProvider>
+            </div>
+          ) : activeSub ? (
             <section aria-label="subgoal content">
               {/* SUBGOAL TOP */}
               <article className="mb-6">
@@ -153,18 +136,6 @@ export default function KpiDetailView() {
               {isEditing ? <KpiDetailContainer /> : <div></div>}
               <KpiDetailContainer activeSub={activeSub} />
 
-              {/* TEXT FILED SECTION */}
-              {/* <form action="#">
-                <div aria-label="subgoal-comments" className="mt-6">
-                  <TextFieldSection
-                    id="subgoal-comments"
-                    label="Comment"
-                    value=""
-                    onChange={(e) => setComment(e.target.value)}
-                    placeholder="Write your thoughts here..."
-                  />
-                </div>
-              </form> */}
               {/* BUTTONS SECTION */}
               <div className="mt-3 pt-4 flex items-center justify-end gap-4">
                 {/* <SmlBtn icon={icons.trash} text="Delete" /> */}

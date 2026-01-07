@@ -1,11 +1,15 @@
+import { useKpiStore } from "../../store/kpiStore";
+import { useParams } from "react-router-dom";
 import { statusColor } from "../../utils/statusColor";
 
 export default function ProgressBar({ progress = 0, status = "Pending" }) {
+  const { kpiId } = useParams();
+  const kpi = useKpiStore((s) => s.getKpiById(kpiId));
   return (
     <div className="space-y-1 w-full">
       <div className="flex justify-between text-xs text-slate-600 dark:text-slate-400">
         <span>Progress</span>
-        <span className="font-medium">{progress}%</span>
+        <span className="font-medium">100{kpi.progress}%</span>
       </div>
 
       <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden shadow-sm">

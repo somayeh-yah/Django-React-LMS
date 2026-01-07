@@ -17,7 +17,7 @@ export const statusDotColor = (status) => {
 };
 
 export const statusColor = (status) => {
-    switch ((status).toLowerCase()) {
+    switch ((status)) {
       case "completed":
         return "bg-emerald-400 hover:bg-emerald-500 cursor-default text-white font-semibold dark:bg-emerald-900/30 dark:text-emerald-400";
       case "pending":

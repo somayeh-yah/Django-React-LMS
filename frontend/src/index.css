@@ -2,65 +2,51 @@
 
 /*  MY DESIGN TOKENS/VARIABELS LIVES HERE */
 
-
-
 /* ****************************** */
 /*         LIGHT MODE            */
 /* ******************************/
 
-
-
-  
-/* .is-invalid {
-  color: var(--color-error);
-  margin-left:10px ;
-} */
-@theme{
-
-    
+@theme {
   /* -------- BG COLORS-------- */
-  --color-background:oklch(0.987 0.0062 255.47);
-  --color-surface:oklch(0.987 0.0062 255.47);
+  --color-background: oklch(0.987 0.0062 255.47);
+  --color-surface: oklch(0.987 0.0062 255.47);
 
   /* --------- BG HEDER ----------  */
-  --color-header:oklch(0.259 0.0398 259.33);
+  --color-header: oklch(0.259 0.0398 259.33);
 
   /* ------- COLOR BORDER ------------ */
-  --color-br:oklch(0.9484 0.0046 258.33);
+  --color-br: oklch(0.9484 0.0046 258.33);
 
   /* ------ GRADIENT ----------- */
 
-  --color-gradient:linear-gradient(
+  --color-gradient: linear-gradient(
     to bottom right,
-   oklch(0.9842 0.0034 247.86), 
-   oklch(0.9705 0.0142 254.6), 
+    oklch(0.9842 0.0034 247.86),
+    oklch(0.9705 0.0142 254.6),
     oklch(0.9299 0.0334 272.79)
   );
 
-
-     /* -------- FEEDBACK COLORS -------- */
+  /* -------- FEEDBACK COLORS -------- */
   --color-error: oklch(59.9% 0.2 27);
   --color-success: oklch(75.1% 0.18 145);
   --color-warning: oklch(84.4% 0.17 85);
 
   /* -------- TEXT COLORS -------- */
-   --color-body: oklch(0.2084 0.0417 266.36); 
+  --color-body: oklch(0.2084 0.0417 266.36);
   --color-muted: oklch(0.4454 0.043 257.42);
   --color-hover: oklch(0.9748 0 0);
 
- 
- /* -----   BUTTON --------------- */
-  --color-bt-strong:oklch(0.2718 0.041 260.31);
-  --color-bt-strong-hover:oklch(0.3546 0.041 260.31);
+  /* -----   BUTTON --------------- */
+  --color-bt-strong: oklch(0.2718 0.041 260.31);
+  --color-bt-strong-hover: oklch(0.3546 0.041 260.31);
 
   /* -------- FONT FAMILIES -------- */
   --font-heading: "Poppins", "Merriweather", "Georgia", serif;
-  --font-sans:"Mona Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-  
-/* ---------  COLOR ICON ---------- */
---color-icon:oklch(0.8666 0.0123 247.97);
---color-icon-hover:oklch(0.9309 0.0094 242.84);
+  --font-sans: "Mona Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 
+  /* ---------  COLOR ICON ---------- */
+  --color-icon: oklch(0.8666 0.0123 247.97);
+  --color-icon-hover: oklch(0.9309 0.0094 242.84);
 
   /* FONT SIZES */
   /* --text-xs: 0.75rem;
@@ -72,89 +58,74 @@
   --text-h2: 1.875rem;
   --text-h1: 3.25rem; */
 
- 
-
   /* LINE HEIGHT */
-   --leading-tight: 1.1;  
+  --leading-tight: 1.1;
   --leading-normal: 1.5;
   --leading-relaxed: 1.7;
 
-    /* LETTER SPACING  */
-    ---tracking-xs:0.035em;
-    --tracking-sm:0.05em;
-   --tracking-lg:0.07em;
-  
+  /* LETTER SPACING  */
+  ---tracking-xs: 0.035em;
+  --tracking-sm: 0.05em;
+  --tracking-lg: 0.07em;
 
-  /*------ SPACING COLUMNS ------ */ 
- --spacing-cols: 1.5rem;  
+  /*------ SPACING COLUMNS ------ */
+  --spacing-cols: 1.5rem;
 
- /* ---- SPACING SECTIONS ------ */
-  --spacing-section: 4rem; 
+  /* ---- SPACING SECTIONS ------ */
+  --spacing-section: 4rem;
 
-/* ----  RADIUS ------ */
-/* --radius-full:1.5rem; */
+  /* ----  RADIUS ------ */
+  /* --radius-full:1.5rem; */
 
   /* SHADOWS */
-  --shadow-sm:  0px 3px 10px 0px rgba(31, 31, 31, 0.04);
+  --shadow-sm: 0px 3px 10px 0px rgba(31, 31, 31, 0.04);
   --shadow-md: 0px 3px 10px 0px rgba(31, 31, 31, 0.4);
-
 }
- 
 
-  /*********************************/
+/*********************************/
 /*           DARK MODE           */
 /* *******************************/
 
-
-  [data-theme="dark"] {
+[data-theme="dark"] {
   /*  Colors  */
-  --color-background: oklch(0.2077 0.0694 268.75); 
-  --color-surface: oklch(0.2431 0.0768 268.55); 
+  --color-background: oklch(0.2077 0.0694 268.75);
+  --color-surface: oklch(0.2431 0.0768 268.55);
 
-    /* --------- BG HEDER ----------  */
-  --color-header:oklch(0.7817 0.1115 245.73);
+  /* --------- BG HEDER ----------  */
+  --color-header: oklch(0.7817 0.1115 245.73);
 
-   /* ------- COLOR BORDER ------------ */
-  --color-br:oklch(0.3499 0.0236 258.37);
+  /* ------- COLOR BORDER ------------ */
+  --color-br: oklch(0.3499 0.0236 258.37);
 
-  
-
-  --color-gradient:linear-gradient(
+  --color-gradient: linear-gradient(
     to bottom right,
-    oklch(0.1288 0.0406 264.7), 
-    oklch(25.149% 0.04795 265.931), 
-    oklch(17.949% 0.0731 266.243) 
+    oklch(0.1288 0.0406 264.7),
+    oklch(25.149% 0.04795 265.931),
+    oklch(17.949% 0.0731 266.243)
   );
-  --color-primary: oklch(0.7313 0.0509 271.03); 
-  --color-primary-soft:  oklch(94% 0 0); 
+  --color-primary: oklch(0.7313 0.0509 271.03);
+  --color-primary-soft: oklch(94% 0 0);
   --color-secondary: oklch(56.7% 0.00401 220.285);
 
   /* -------- TEXT COLORS -------- */
-  --color-body: oklch(1 0 0);  
-  --color-muted:oklch(0.5542 0.046 257.53);
-
+  --color-body: oklch(1 0 0);
+  --color-muted: oklch(0.5542 0.046 257.53);
 
   /*  Shadow  */
-  --shadow-sm: 0 6px 18px 0 oklch(0.1 0 0 / 0.5);  
-  --shadow-md: 0 12px 30px 0 oklch(0.08 0 0 / 0.8); 
+  --shadow-sm: 0 6px 18px 0 oklch(0.1 0 0 / 0.5);
+  --shadow-md: 0 12px 30px 0 oklch(0.08 0 0 / 0.8);
 }
 
-
-
-
-@layer base{
-
-
-  a{
+@layer base {
+  a {
     @apply no-underline text-red-950 hover:text-red-900/70;
   }
   body {
-    @apply font-sans text-body bg-background shadow-sm min-h-screen rounded-full ;
-    
+    @apply font-sans text-body bg-background shadow-sm min-h-screen rounded-full;
   }
 
-   .profile-row {
-    @apply relative inline-flex items-center text-center gap-3 ;
+  .profile-row {
+    @apply relative inline-flex items-center text-center gap-3;
   }
 
   .profile-avatar {
@@ -167,36 +138,31 @@
 
   .profile-tooltip-peer {
     @apply absolute z-50 pointer-events-none whitespace-nowrap
-           bottom-full left-6
-           bg-stone-800 text-stone-50 text-xs px-2 py-1 rounded-md
-           opacity-0 invisible translate-y-0 transition-all;
-
-    @apply peer-hover:opacity-100 peer-hover:visible ;
+           bottom-full left-6  bg-stone-800 text-stone-50 text-xs px-2 py-1 rounded-md
+           opacity-0 invisible translate-y-1 transition-all;
   }
 
-  
+  .peer:hover + .profile-tooltip-peer,
+  .peer:focus-visible + .profile-tooltip-peer,
+  .peer:active + .profile-tooltip-peer {
+    @apply opacity-100 visible translate-y-0;
+  }
+
   .search-input {
-   @apply w-full pl-10 pr-4 py-2.5 mt-1 bg-surface hover:bg-slate-100/50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-full text-body font-sans outline-none focus:outline-none focus:ring-0 focus:ring-slate-300
+    @apply w-full pl-10 pr-4 py-2.5 mt-1 bg-surface hover:bg-slate-100/50 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-full text-body font-sans outline-none focus:outline-none focus:ring-0 focus:ring-slate-300
           focus:border-slate-300 placeholder:text-muted placeholder:text-sm transition-all;
- }
-  .button{
+  }
+  .button {
     @apply inline-flex justify-center items-center text-pretty md:text-nowrap gap-2 border border-stone-200 px-6 py-2 transition-colors shadow-sm hover:border text-hover bg-sky-400 hover:bg-sky-300 font-sans font-bold focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-900 rounded-full cursor-pointer tracking-sm;
   }
 
-  .sec-button{
+  .sec-button {
     @apply rounded-full border border-slate-200 dark:border-slate-800 hover:border-slate-200/50 px-4 py-2 text-sm  focus-visible:outline-2 focus-visible:outline-offset-2 hover:bg-slate-100/50 cursor-pointer shadow-sm;
   }
 
   .profile {
-    @apply
-    w-8 h-8 rounded-full ring-2 ring-blue-500 object-cover;
+    @apply w-8 h-8 rounded-full ring-2 ring-blue-500 object-cover;
   }
-
-  
-
-
-
-
 }
 
 @utility no-scrollbar {

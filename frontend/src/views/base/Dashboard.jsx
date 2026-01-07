@@ -15,7 +15,6 @@ export default function Dashboard() {
       <div className="flex h-screen overflow-hidden">
         <UserSideBar
           collapsed={sideBarCollapsed}
-          ontoggle={() => setSideBarCollapsed(!sideBarCollapsed)}
           currentPage={currentPage}
           onPageChange={setCurrentPage}
         />

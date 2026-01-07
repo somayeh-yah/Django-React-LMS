@@ -2,17 +2,19 @@ import { icons } from "../../utils/icons";
 
 export const menuItems = [
     {
-      id: "overview",
+      id: "dashboard",
       label: "Dashboard",
       icon: icons.dashboardIcon,
       href: "/dashboard",
       badge: "New",
+     
     },
     {
       id: "analytics",
       label: "Analytics",
       icon: icons.activity,
       href: "/analytics",
+      
       subMenu: [
         {
           id: "traffic",
@@ -34,6 +36,7 @@ export const menuItems = [
       icon: icons.chart,
       href: "/sales",
       count: 50,
+     
       subMenu: [
         { id: "revenue", label: "Revenue KPIs", href: "/sales/revenue" },
         { id: "pipeline", label: "Pipeline", href: "/sales/pipeline" },
@@ -45,6 +48,7 @@ export const menuItems = [
       label: "Projects",
       icon: icons.kanban,
       href: "/projects",
+      
       subMenu: [
         {
           id: "active-projects",
@@ -66,6 +70,7 @@ export const menuItems = [
       icon: icons.messages,
       href: "/messages",
       badge: 3,
+      
     },
 
     {
@@ -74,6 +79,7 @@ export const menuItems = [
       icon: icons.calendar,
       href: "/calendar",
       badge: 1,
+     
     },
 
     {
@@ -82,6 +88,7 @@ export const menuItems = [
       icon: icons.users,
       href: "/team",
       badge: 5,
+    
 
       subMenu: [
         {
@@ -99,6 +106,7 @@ export const menuItems = [
       icon: icons.user,
       href: "/members",
       badge: 12,
+      
     },
 
     {
@@ -107,12 +115,14 @@ export const menuItems = [
       icon: icons.file,
       href: "/reports",
       count: 20,
+     
     },
     {
       id: "settings",
       label: "Settings",
       icon: icons.settings,
       href: "/settings",
+     
     },
   ];
 

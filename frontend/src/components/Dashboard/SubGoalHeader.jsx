@@ -1,9 +1,20 @@
+import { useKpiStore } from "../../store/kpiStore";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import StatusBadge from "./statusBadge";
 import ProgressBar from "./ProgressBar";
 import Button from "../Button";
-import { kpiData as kpi } from "../../constants/data/kpiData";
+// import { kpiData as kpi } from "../../constants/data/kpiData";
 
-export default function SubGoalHeader({ addSubGoal }) {
+export default function SubGoalHeader() {
+  const { kpiId } = useParams();
+  const kpi = useKpiStore((s) => s.getKpiById(kpiId));
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    navigate(`/kpi/${kpiId}/sub/new`);
+  };
+  if (!kpi) return <div>Loading…</div>;
   return (
     <header
       className="sticky top-0 z-20 border-b border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 py-4"
@@ -25,6 +36,9 @@ export default function SubGoalHeader({ addSubGoal }) {
           <div className="pt-4 flex flex-wrap items-center gap-3 text-sm text-slate-600 dark:text-slate-300">
             <span className="ms-1">
               Status: <StatusBadge value={kpi.status} />
+            </span>
+            <span className="ms-1">
+              Team: <StatusBadge value={kpi.team} />
             </span>
             <span className="ms-1">
               Priority: <StatusBadge value={kpi.priority} />
@@ -71,10 +85,10 @@ export default function SubGoalHeader({ addSubGoal }) {
           <div className="mt-3 flex items-center justify-end gap-2">
             <Button type="button" text="Edit KPI" className="sec-button" />
             <Button
-              type="button"
+              type="submit"
               className="button"
               text="Add subgoal"
-              onClick={addSubGoal}
+              onClick={handleNavigate}
             />
           </div>
         </div>
