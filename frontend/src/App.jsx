@@ -19,7 +19,6 @@ function App() {
           <Route path="/kpi/:kpiId" element={<KpiDetailView />} />
           <Route path="/kpi/:kpiId/sub/:subId" element={<KpiDetailView />} />
           <Route path="/kpi/new" element={<GoalAndVisions />} />
-          <Route path="/kpi/:kpiId/sub/new" element={<SubGoalForm />} />
         </Routes>
       </MainWrapper>
     </BrowserRouter>

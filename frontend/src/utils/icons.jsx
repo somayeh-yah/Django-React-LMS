@@ -46,6 +46,8 @@ import {
   Save,
   Goal,
   X,
+  PenLine,
+  ChevronUp,
 } from "lucide-react";
 
 export const icons = {
@@ -64,6 +66,9 @@ export const icons = {
   settings: <Settings size={25} strokeWidth={1.5} />,
   sun: <Sun size={25} strokeWidth={1.5} />,
   arrowDown: <ChevronDown strokeWidth={1.5} className="text-slate-4 w-4 h-4" />,
+  arrowUp: (
+    <ChevronUp ChevronDown strokeWidth={1.5} className="text-slate-4 w-4 h-4" />
+  ),
   dashboardIcon: <LayoutDashboard size={20} strokeWidth={1.5} />,
   activity: <Activity size={20} strokeWidth={1.5} />,
   zap: <Zap strokeWidth={1.5} className="w-6 h-6 text-white" />,
@@ -78,6 +83,7 @@ export const icons = {
   save: <Save size={20} strokeWidth={1.5} />,
   goal: <Goal size={20} strokeWidth={1.5} />,
   close: <X size={20} strokeWidth={1.5} />,
+  dec: <PenLine size={15} strokeWidth={1.5} />,
 
   archive: (
     <ArchiveRestore

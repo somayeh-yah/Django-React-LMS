@@ -1,12 +1,11 @@
-import { useForm, FormProvider } from "react-hook-form";
 import { useKpiStore } from "../../store/kpiStore";
+import { useForm, FormProvider } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { useEffect, useState } from "react";
 import KpiList from "../../components/Dashboard/KpiList";
-import Button from "../../components/Button";
+
 import SmlBtn from "../../components/Dashboard/SmlBtn";
 
-import StatusBadge from "../../components/Dashboard/statusBadge";
 import SubGoalForm from "../../components/Dashboard/SubGoalForm";
 import { icons } from "../../utils/icons";
 import KpiDetailContainer from "../../components/Dashboard/KpiDetailContainer";
@@ -14,46 +13,113 @@ import KpiDetailContainer from "../../components/Dashboard/KpiDetailContainer";
 import EmptyState from "../../components/EmptyState";
 import SubGoalHeader from "../../components/Dashboard/SubGoalHeader";
 
+const defaultSubGoalsValue = {
+  title: "",
+  description: "",
+  issue: "",
+  importance: "",
+  deadline: "",
+  team: "",
+  status: "",
+  completed: false,
+  assigned: [],
+  createdAt: "Notset",
+  progress: 0,
+  priority: "",
+};
+
 export default function KpiDetailView() {
+  const {
+    addSubGoals,
+    editSubGoal,
+    removeSubKpi,
+    toggleSubCompleted,
+    archiveKpi,
+    unArchiveKpi,
+  } = useKpiStore((state) => ({
+    addSubGoals: state.addSubGoals,
+    editSubGoal: state.editSubGoal,
+    removeSubKpi: state.removeSubKpi,
+    toggleSubCompleted: state.toggleSubCompleted,
+    archiveKpi: state.archiveKpi,
+    unArchiveKpi: state.unArchiveKpi,
+  }));
+
   const navigate = useNavigate();
   const { kpiId, subId } = useParams();
-  // GET KPI BY ID
-  const kpi = useKpiStore((s) => s.getKpiById(kpiId));
-  const addSubGoals = useKpiStore((s) => s.addSubGoals);
-
-  const subGoals = kpi?.subGoals ?? [];
-
-  const isNew = subId === "new";
-  const activeSub =
-    !isNew && subId ? (subGoals.find((i) => i.id === subId) ?? null) : null;
-
-  const handleSubGoals = (subData) => {
-    const newSub = addSubGoals(kpiId, subData);
-    navigate(`/kpi/${kpiId}/sub/${newSub.id}`);
-  };
 
   const methods = useForm({
-    defaultValues: {
-      goal: "",
-      issue: "",
-      importance: "",
-      deadline: "",
-      team: "",
-      status: "",
-      completed: false,
-      assigned: [],
-      createdAt: "Notset",
-      progress: "",
-    },
+    defaultValues: defaultSubGoalsValue,
     mode: "onSubmit",
   });
 
+  // GET ADD SUBGOALS ACTION FROM KPI BY ID ZUSTAND STORE
+  const kpi = useKpiStore((s) => s.getKpiById(kpiId));
+  const subGoals = kpi?.subGoals ?? [];
+
+  const [isEditing, setIsEditing] = useState(false);
+  // const [isArchived, setIsarchived]
+
+  const createNewSub = subId === "new";
+  const activeSub =
+    !createNewSub && subId
+      ? (subGoals.find((i) => i.id === subId) ?? null)
+      : null;
+
+  //SELECT AN EXISTING SUNGOAL
+  useEffect(() => {
+    if (!activeSub) return;
+    methods.reset({
+      title: activeSub.title ?? "",
+      description: activeSub.description ?? "",
+      issue: activeSub.issue ?? "",
+      importance: activeSub.importance ?? "",
+      deadline: activeSub.deadline ?? "",
+      team: activeSub.team ?? "",
+      status: activeSub.status ?? "",
+      completed: !!activeSub.completed,
+      assigned: activeSub.assigned ?? [],
+      progress: activeSub.progress ?? 0,
+      priority: activeSub.priority ?? "",
+    });
+    setIsEditing(false);
+  }, [activeSub?.id]);
+
+  // EMPTHY ALL THE INPUTS
+  useEffect(() => {
+    if (subId !== "new") return;
+    methods.reset(defaultSubGoalsValue);
+    setIsEditing(false);
+  }, [subId, methods]);
+
+  const handleUpdate = methods.handleSubmit((data) => {
+    if (!kpiId || !activeSub) return;
+    editSubGoal(kpiId, activeSub.id, data);
+    setIsEditing(false);
+  });
+
+  // CREATE A NEW SUBGOAL
+  const onSubmit = (subData) => {
+    const newSub = addSubGoals(kpiId, subData);
+    // RESET ALL FORM FIELDS
+    methods.reset(defaultSubGoalsValue);
+    navigate(`/kpi/${kpiId}/sub/${newSub.id}`);
+  };
+
+  const removeSub = () => {
+    removeSubKpi(kpiId, activeSub.id);
+    const remaining = subGoals.filter((x) => x.id !== activeSub.id);
+    const latestSubId = remaining[0]?.id ?? "new";
+
+    navigate(`/kpi/${kpiId}/sub/${latestSubId}`);
+  };
+
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full bg-background dark:to-purple-50">
       {/* KPI DETAIL HEADER */}
-      <SubGoalHeader addSubGoals={addSubGoals} />
+      <SubGoalHeader />
       {/* SUB KPI MAIN CONTENT */}
-      <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr]">
+      <div className="grid grid-cols-1 md:grid-cols-[360px_1fr] ">
         {/* LEFT SUBGOAL SECTION */}
         <section
           className="border-r border-slate-200/60 dark:border-slate-800/60 "
@@ -68,7 +134,7 @@ export default function KpiDetailView() {
           <ul
             role="listbox"
             aria-label="Subgoal list"
-            className="p-2 space-y-2 outline-none focus-visible:ring-2 focus-visible:ring-slate-400"
+            className="p-2 space-y-2 outline-none focus-visible:ring-2 focus-visible:ring-slate-400 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-2"
           >
             {/* KPI CARD LIST */}
             {subGoals.map((s) => {
@@ -76,76 +142,72 @@ export default function KpiDetailView() {
                 <KpiList
                   key={s.id}
                   selected={activeSub?.id === s.id}
-                  subgoal={s}
+                  subGoal={s}
                   onSelect={() => {
-                    navigate(`/kpi/${kpiId.id}/sub/${s.id}`);
+                    navigate(`/kpi/${kpiId}/sub/${s.id}`);
                   }}
                 />
               );
             })}
           </ul>
-          ,
         </section>
 
         {/* RIGHT DETAIL SECTION */}
-        <section id="subgoal-detail" className="p-6">
-          {/* FORM CONTAINER */}
-          {isNew ? (
+        <section id="subgoal-detail" className="p-3 md:p-6">
+          {/* SHOW FORM CONTAINER */}
+          {createNewSub ? (
             <div className="space-y-7">
               <FormProvider {...methods}>
-                <SubGoalForm handleSubGoals={handleSubGoals} />
+                <SubGoalForm onSubmit={onSubmit} />
               </FormProvider>
             </div>
           ) : activeSub ? (
-            <section aria-label="subgoal content">
-              {/* SUBGOAL TOP */}
-              <article className="mb-6">
-                <p className="text-xs text-muted font-sans font-semibold tracking-lg leading-relaxed">
-                  Subgoal detail
-                </p>
-                {/* SUB MENU TITLE */}
-                <div className="mt-1 flex items-center justify-between gap-4">
-                  <h2
-                    id="subgoal-title"
-                    className="mt-1 text-2xl font-bold font-sans text-body "
-                  >
-                    {activeSub.title}
-                  </h2>
+            isEditing ? (
+              <FormProvider {...methods}>
+                <SubGoalForm onSubmit={handleUpdate} />
+              </FormProvider>
+            ) : (
+              <section aria-label="subgoal content" className="pb-4">
+                {/* SUBGOAL TOP */}
+                <article>
                   {/* ACTIONS SUB-MENU BUTTONS -ADD- -ARCIVE-  */}
-                  <div className="flex items-center space-x-5 gap-1 hover:text-blue-400 text-sm font-sans font-semibold py-2 ">
-                    {isEditing ? (
-                      <SmlBtn icon={icons.close} text={Close} />
-                    ) : (
-                      <>
-                        <SmlBtn icon={icons.edit} text="Edit" />
-                        <SmlBtn icon={icons.archive} text="Archive" />
-                      </>
-                    )}
+                  <div className="flex items-start flex-col lg:justify-between lg:flex-row sm:pt-3 border-t border-slate-200 md:border-t-0 md:space-y-5">
+                    <p className="text-xs text-muted font-sans font-semibold tracking-lg leading-relaxed text-nowrap mb-4">
+                      Subgoal detail
+                    </p>
                   </div>
-                </div>
+                  <div className="flex justify-end space-x-5 md:gap-1 hover:text-blue-400 text-xs font-sans font-semibold">
+                    <SmlBtn icon={icons.close} text="Close" />
+                    <SmlBtn
+                      onClick={() => removeSub()}
+                      icon={icons.trash}
+                      text="Delete"
+                    />
+                    <SmlBtn
+                      onClick={() => setIsEditing((v) => !v)}
+                      icon={icons.edit}
+                      text={isEditing ? "Cansel" : "Edit"}
+                    />
+                    {/* {kpi?.archived ? (
+                      <SmlBtn
+                        onClick={() => unArchiveKpi(kpi.id)}
+                        icon={icons.archive}
+                        text="Unarchive"
+                      />
+                    ) : (
+                      <SmlBtn
+                        onClick={() => archiveKpi(kpi.id)}
+                        icon={icons.archive}
+                        text="Archive"
+                      />
+                    )} */}
+                  </div>
 
-                <div className="mt-3 flex flex-wrap items-center gap-1 text-xs">
-                  <StatusBadge label="Status" value={activeSub.status} />
-                  <span className="text-muted font-semi font-semibold text-xs">
-                    Completed: {activeSub.progress}%
-                  </span>
-                </div>
-              </article>
-
-              {/* DETAIL CARDS SECTION  */}
-              {isEditing ? <KpiDetailContainer /> : <div></div>}
-              <KpiDetailContainer activeSub={activeSub} />
-
-              {/* BUTTONS SECTION */}
-              <div className="mt-3 pt-4 flex items-center justify-end gap-4">
-                {/* <SmlBtn icon={icons.trash} text="Delete" /> */}
-                <Button
-                  icon={icons.save}
-                  className="button"
-                  text="Save changes"
-                />
-              </div>
-            </section>
+                  {/* SUBMENU CONTENT */}
+                  <KpiDetailContainer activeSub={activeSub} />
+                </article>
+              </section>
+            )
           ) : (
             <EmptyState />
           )}

@@ -29,8 +29,9 @@ export default function GoalAndVisions() {
     defaultValues: {
       goal: "",
       issue: "",
-      importance: "",
+      description: "",
       deadline: "",
+      priority: "",
       team: "",
       status: "",
       completed: false,
@@ -94,7 +95,6 @@ export default function GoalAndVisions() {
                   {newKpis.map((kpi) => (
                     <SmlBtn
                       key={kpi.id}
-                      className="rounded-full border border-slate-200 bg-white px-3 py-1 font-medium"
                       text={kpi.goal?.trim() || "Untitled"}
                       onClick={() => navigate(`/kpi/${kpi.id}`)}
                     />

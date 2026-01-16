@@ -19,7 +19,7 @@ export default function Dashboard() {
           onPageChange={setCurrentPage}
         />
 
-        <div className="flex-1 flex flex-col justify-start md:justify-around overflow-hidden bg-linear-to-r from-blue-100 to-purple-100">
+        <div className="flex-1 flex flex-col justify-start md:justify-around overflow-hidden bg-background">
           <MainHeader
             sideBarCollapsed={sideBarCollapsed}
             onToggleSidbar={() => setSideBarCollapsed(!sideBarCollapsed)}

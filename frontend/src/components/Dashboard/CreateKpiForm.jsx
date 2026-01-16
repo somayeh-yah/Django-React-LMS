@@ -3,8 +3,12 @@ import Select from "react-select";
 import { icons } from "../../utils/icons";
 import Input from "./Input";
 import TextFieldSection from "./TextFieldSection";
-import { teamOptions, statusOptions } from "../../constants/data/kpiData";
-import { statusDotColor } from "../../utils/statusColor";
+import {
+  teamOptions,
+  priorityOptions,
+  statusOptions,
+} from "../../constants/data/kpiData";
+import { priorityColor, statusColor } from "../../utils/statusColor";
 import MySelectInput from "./MySelectInput";
 
 export default function CreateKpiForm({ onSubmit }) {
@@ -14,6 +18,7 @@ export default function CreateKpiForm({ onSubmit }) {
     control,
     formState: { errors },
   } = useFormContext();
+  console.log("priority field value:", control.value);
   return (
     <>
       <div className="flex flex-col pt-18 ">
@@ -50,11 +55,11 @@ export default function CreateKpiForm({ onSubmit }) {
         />
 
         <TextFieldSection
-          id="importance"
+          id="description"
           placeholder="Ex: It increases alignment, retention and delivery quality."
           label="Why is this goal important?"
-          error={errors.importance?.message}
-          {...register("importance", {
+          error={errors.description?.message}
+          {...register("description", {
             required: "Please write why this goal is importand",
           })}
         />
@@ -107,9 +112,39 @@ export default function CreateKpiForm({ onSubmit }) {
         )}
 
         <Controller
+          name="priority"
+          control={control}
+          rules={{ required: "Priority is required" }}
+          render={({ field }) => (
+            <MySelectInput
+              inputId="priority"
+              name="priority"
+              options={priorityOptions}
+              value={
+                priorityOptions.find((o) => o.value === field.value) ?? null
+              }
+              onChange={(opt) => field.onChange(opt?.value ?? "")}
+              formatOptionLabel={(opt) => (
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`h-2 w-2 rounded-full ${priorityColor(opt.value)}`}
+                  />
+                  <span>{opt.label}</span>
+                </div>
+              )}
+              placeholder="select status"
+              label="Priority :"
+            />
+          )}
+        />
+        {errors.priority && (
+          <p className="text-xs text-red-500 ms-2">{errors.priority.message}</p>
+        )}
+
+        <Controller
           name="status"
           control={control}
-          rules={{ required: "Status is required" }}
+          rules={{ required: "Status a is required" }}
           render={({ field }) => (
             <MySelectInput
               inputId="status"
@@ -120,7 +155,7 @@ export default function CreateKpiForm({ onSubmit }) {
               formatOptionLabel={(opt) => (
                 <div className="flex items-center gap-2">
                   <span
-                    className={`h-2 w-2 rounded-full ${statusDotColor(opt.value)}`}
+                    className={`h-2 w-2 rounded-full ${statusColor(opt.value)}`}
                   />
                   <span>{opt.label}</span>
                 </div>

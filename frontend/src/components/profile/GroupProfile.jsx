@@ -13,7 +13,7 @@ export default function GroupProfile() {
   ];
 
   return (
-    <div className="flex justify-center items-center -space-x-5 w-full -ms-1">
+    <div className="hidden sm:flex justify-center items-center -space-x-5 w-full -ms-1 shrink">
       {members.map((m) => {
         return (
           <SingleProfile
