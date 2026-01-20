@@ -2,16 +2,12 @@ import { pieShartData } from "../../../constants/data/pieChartData";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 export default function MyPieChart() {
   return (
-    <section className="bg-white dark:bg-slate-900 backdrop:blur-xl rounded-b-xl p-2 border border-slate-200/50 dark:border-slate-700/50 min-h-[250px]">
+    <section className="bg-surface backdrop:blur-xl rounded-b-xl p-2 border border-slate-200/50 dark:border-slate-700/50 min-h-[250px] shadow-sm ">
       <div className="mb-1">
-        <h4 className="text-lg font-bold text-slate-800 dark:text-white">
-          Visions Achived
-        </h4>
-        <p className="text-sm text-slate-500 dark:text-slate-400">
-          This quarters goals was
-        </p>
+        <h4 className="text-lg font-bold text-body">Visions Achived</h4>
+        <p className="text-sm text-muted ">This quarters goals was</p>
       </div>
-      <div className="h-48">
+      <div className="h-48 ">
         <ResponsiveContainer width={"100%"} height={"100%"}>
           <PieChart>
             <Pie
@@ -37,6 +33,7 @@ export default function MyPieChart() {
                 border: "none",
                 borderRadius: "12px",
                 boxShadow: "0, 10px, 40px rgba(0, 0, 0, 0.1)",
+                color: "var(--color-body)",
               }}
             />
           </PieChart>
@@ -55,11 +52,9 @@ export default function MyPieChart() {
                   className="w-3 h-3 rounded-full"
                   style={{ backgroundColor: data.color }}
                 ></div>
-                <span className="ps-2 text-sm text-slate-600 dark:text-slate-300">
-                  {data.name}
-                </span>
+                <span className="ps-2 text-sm text-body ">{data.name}</span>
               </div>
-              <div className="text-sm font-semibold text-slate-800 dark:text-white">
+              <div className="text-sm font-semibold text-body">
                 {data.value}
               </div>
             </div>

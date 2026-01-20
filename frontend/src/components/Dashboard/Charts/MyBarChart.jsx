@@ -11,7 +11,7 @@ import { chartData } from "../../../constants/data/chartData";
 
 export default function MyBarChart() {
   return (
-    <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-b-2xl border border-slate-200/50 dark:border-slate-700/50 px-1 md:p-6">
+    <div className="bg-surface backdrop-blur-xl rounded-b-2xl border border-slate-200/50 dark:border-slate-700/50 px-1 md:p-6 shadow-sm">
       <div className="flex items-center justify-between mb-6">
         <div>
           <h4 className="text-xl font-bold text-slate-800 dark:text-white text-clip ps-1">

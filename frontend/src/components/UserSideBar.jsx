@@ -49,7 +49,7 @@ export default function UserSideBar({ collapsed, currentPage, onPageChange }) {
           return (
             <div key={item.id}>
               <button
-                className={`w-full flex items-center justify-between px-3 py-2.5 rounded transition-all duration-200 hover:font-bold ${currentPage === item.id ? "bg-linear-to-r from-blue-500 to-purple-600 text-white shadow-md shadow-blue-500/25" : "text-body hover:bg-slate-200"}`}
+                className={`w-full flex items-center justify-between px-3 py-2.5 rounded transition-all duration-200 hover:font-bold ${currentPage === item.id ? "bg-linear-to-r from-blue-500 to-purple-600 text-white shadow-md shadow-blue-500/25" : "text-body hover:bg-hover dark:hover:bg-blue-950"}`}
                 onClick={() => {
                   if (item.subMenu) {
                     toggleExpended(item.id);

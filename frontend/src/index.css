@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 /*  MY DESIGN TOKENS/VARIABELS LIVES HERE */
 
 /* ****************************** */
@@ -8,7 +8,7 @@
 
 @theme {
   /* -------- BG COLORS-------- */
-  --color-background: oklch(0.987 0.0062 255.47);
+  --color-background: oklch(0.9973 0.0013 286.38);
   --color-surface: oklch(0.987 0.0062 255.47);
 
   /* --------- BG HEDER ----------  */
@@ -86,7 +86,7 @@
 /*           DARK MODE           */
 /* *******************************/
 
-[data-theme="dark"] {
+:root.dark {
   /*  Colors  */
   --color-background: oklch(0.2077 0.0694 268.75);
   --color-surface: oklch(0.2431 0.0768 268.55);

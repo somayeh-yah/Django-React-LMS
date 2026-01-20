@@ -117,7 +117,7 @@ export default function TableRow() {
 
         {/* COACH CARD */}
         <div className="px-3 py-3">
-          <div className="flex items-center justify-between gap-6 rounded-xl bg-white px-3 py-3 shadow-lg ring-1 ring-black/5 w-[250px] mb-5">
+          <div className="flex items-center justify-between gap-6 rounded-xl bg-background dark:bg-blue-950 px-3 py-3 shadow-sm hover:shadow-md ring-1 ring-black/5 w-[250px] mb-5">
             <SingleProfile
               src={profileImg2}
               alt="profile image"
@@ -167,7 +167,7 @@ export default function TableRow() {
                     // exit="exit"
                     transition={{ duration: 0.2, ease: "easeOut" }}
                     layout
-                    className="even:bg-white odd:bg-gray-50 dark:even:bg-gray-900/50 dark:odd:bg-gray-950 transition-colors"
+                    className="even:bg-background odd:bg-surface transition-colors"
                   >
                     <td className="p-3">
                       <div className="flex items-center gap-2">
@@ -182,8 +182,8 @@ export default function TableRow() {
                           htmlFor={`check-${kpi.id}`}
                           className={`text-sm font-medium text-nowrap ${
                             kpi.completed
-                              ? "line-through text-slate-500"
-                              : "text-slate-800"
+                              ? "line-through decoration-2 text-slate-500"
+                              : "text-body"
                           }`}
                         >
                           {kpi.goal}
@@ -192,32 +192,32 @@ export default function TableRow() {
                     </td>
 
                     <td className="p-3">
-                      <span className="text-sm font-semibold text-slate-500 text-nowrap">
+                      <span className="text-sm font-semibold text-body text-nowrap">
                         {kpi.issue || "—"}
                       </span>
                     </td>
 
                     <td className="p-3">
-                      <span className="text-sm font-semibold text-slate-500 text-nowrap">
+                      <span className="text-sm font-semibold text-body text-nowrap">
                         {kpi.goal || "—"}
                       </span>
                     </td>
 
                     <td className="p-3">
-                      <span className="text-sm font-semibold text-slate-500 text-nowrap">
+                      <span className="text-sm font-semibold text-body text-nowrap">
                         {kpi.team || "—"}
                       </span>
                     </td>
 
                     <td className="p-3">
-                      <span className="text-sm font-semibold text-slate-500 text-nowrap">
+                      <span className="text-sm font-semibold text-body text-nowrap">
                         {kpi.assigned ?? []}
                       </span>
                     </td>
 
                     <td className="p-3 text-nowrap">
                       <span
-                        className={`text-white font-medium text-xs px-3 py-1 rounded-full ${statusColor(kpi.status)}`}
+                        className={`text-body font-medium text-xs px-3 py-1 rounded-full ${statusColor(kpi.status)}`}
                       >
                         {kpi.status}
                       </span>
@@ -231,7 +231,7 @@ export default function TableRow() {
                     </td>
 
                     <td className="p-3">
-                      <span className="text-sm font-semibold text-slate-500 text-nowrap">
+                      <span className="text-sm font-semibold text-body text-nowrap">
                         {kpi.deadline || "—"}
                       </span>
                     </td>

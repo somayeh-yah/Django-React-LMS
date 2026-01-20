@@ -23,17 +23,23 @@ export default function SubGoalHeader() {
 
   return (
     <header
-      className="sticky top-0 z-20 border-b border-slate-200/60 dark:border-slate-800/60 bg-white/80 dark:bg-slate-950/80 backdrop-blur px-4 py-4"
+      className="sticky top-0 z-20  bg-surface/90 dark:bg-surface backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 px-4 py-4"
       aria-label="kpi-title"
     >
       <section className=" flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
         <div className="w-full">
-          <a
-            href="/dashboard/"
-            className="text-body font-bold mb-3 py-1 font-sans"
-          >
-            Go back
-          </a>
+          {/* GO BACK BUTTON */}
+          <div className="flex items-center gap-2 ">
+            <a
+              href="/dashboard/"
+              className="flex items-center gap-1 text-body font-bold mb-3 py-1 font-sans hover:text-blue-300 darK:hover:text-slate-100/50"
+            >
+              <span className=" hover:text-blue-300 dark:hover:text-blue-100">
+                {icons.arrowLeft}
+              </span>
+              Go back
+            </a>
+          </div>
           {/* BUTTON GROUP  */}
           <div className="flex items-center justify-end gap-2 w-full">
             <Button type="button" text="Edit KPI" className="button" />

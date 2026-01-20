@@ -10,7 +10,7 @@ export default function Stats({ label, children }) {
         return (
           <div
             key={i}
-            className="bg-background backdrop-blur-xl rounded-2xl py-4 px-3 border border-slate-200/50 dark:border-slate-700/50 hover:shadow-sm transition-all duration-300 group "
+            className="bg-background backdrop-blur-xl rounded-2xl py-4 px-3 border border-slate-200 dark:border-slate-700/50 hover:shadow-sm transition-all duration-300 group "
           >
             <div className="flex items-start justify-between">
               <div className="flex-1">

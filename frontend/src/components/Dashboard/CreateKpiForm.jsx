@@ -178,10 +178,7 @@ export default function CreateKpiForm({ onSubmit }) {
           error={errors.deadline?.message}
           {...register("deadline", { required: "Deadline is required" })}
         />
-        <button
-          type="submit"
-          className=" mt-4 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-body hover:bg-slate-100 cursor-pointer"
-        >
+        <button type="submit" className=" mt-4 button">
           Add new
           <span className="text-base font-sant font-semibold leading-none">
             {icons.add}
